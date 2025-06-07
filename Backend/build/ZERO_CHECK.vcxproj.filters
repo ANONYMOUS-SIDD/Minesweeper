@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend\build\CMakeFiles\72dc0bad9770e2ee4ed9b0c3ac86fdb0\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9ED0EB50-E711-3691-9034-BD59AC7E7083}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

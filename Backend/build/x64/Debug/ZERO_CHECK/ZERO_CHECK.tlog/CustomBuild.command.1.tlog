@@ -1,0 +1,10 @@
+^D:\ANONYMOUS\DEVELOPER\MYRAYLIB\MINESWEEPER\HELLO_RAYLIB\BACKEND\BUILD\CMAKEFILES\72DC0BAD9770E2EE4ED9B0C3AC86FDB0\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend -BD:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/hello_crow.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

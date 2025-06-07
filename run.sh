@@ -8,4 +8,4 @@ if [ $? -eq 0 ]; then
     ./hello_raylib
 else
     echo "Build failed. Please check for errors."
-fi
+

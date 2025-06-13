@@ -1,0 +1,10 @@
+^D:\ANONYMOUS\DEVELOPER\MYRAYLIB\MINESWEEPER\HELLO_RAYLIB\BUILD\CMAKEFILES\230E2ADABC848D7D45A84385C24BE0F3\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib -BD:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/build/SignupApp.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

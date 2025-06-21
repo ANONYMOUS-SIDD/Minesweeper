@@ -17,7 +17,7 @@ Score::Score(const std::string& mail, int bestTime, int wonGames, int lostGames)
     : email(mail), best_time(bestTime), won(wonGames), lose(lostGames) {}
 
 //sendRequest Function To Be Triggered On Button Click
-void Score::sendRequest() {
+std::string Score::sendRequest() {
     //Initialize Curl
     CURL* curl = curl_easy_init();
 
@@ -49,16 +49,18 @@ void Score::sendRequest() {
         //Finally Execute The Query
         CURLcode res = curl_easy_perform(curl);
 
-        //Check If Connection Is Made Valid Or Not
-        if (res == CURLE_OK) {
-            std::cout << "Response: " << responseString << std::endl;
-        } else {
-            std::cerr << "Request failed: " << curl_easy_strerror(res) << std::endl;
-        }
-
         //Erase Headers
         curl_slist_free_all(headers);
         //Free The Memory
         curl_easy_cleanup(curl);
+
+        //Check If Connection Is Made Valid Or Not
+        if (res == CURLE_OK) {
+            return responseString;
+        } else {
+            return std::string("Request failed: ") + curl_easy_strerror(res);
+        }
     }
+
+    return "Failed to initialize CURL";
 }

@@ -20,7 +20,7 @@ public:
     SignUp(const std::string& uname, const std::string& mail, const std::string& pword);
 
     //Function To Send POST Request To The Server
-    void sendRequest();
+    std::string sendRequest();  // <-- Fixed here: added std::
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "signup_class.h"
 #include <iostream>
 #include <curl/curl.h>
+#include <string>
 
 //CallBack Function To Handle Server Response After Sending The Request
 size_t SignUp::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userp) {
@@ -18,7 +19,7 @@ SignUp::SignUp(const std::string& uname, const std::string& mail, const std::str
     : username(uname), email(mail), password(pword) {}
 
 //Function To Send SignUp Request To The Server
-void SignUp::sendRequest() {
+std::string SignUp::sendRequest() {
     //Initialize CURL
     CURL* curl = curl_easy_init();
 
@@ -47,16 +48,20 @@ void SignUp::sendRequest() {
         //Execute The Request
         CURLcode res = curl_easy_perform(curl);
 
-        //Check If Request Was Successful
-        if (res == CURLE_OK) {
-            std::cout << "Response: " << responseString << std::endl;
-        } else {
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-        }
-
         //Free The Header Memory
         curl_slist_free_all(headers);
         //Clean Up CURL Resources
         curl_easy_cleanup(curl);
+
+        //Check If Request Was Successful
+        if (res == CURLE_OK) {
+           // std::cout << "Response: " << responseString << std::endl;
+           return responseString;
+        } else {
+           // std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+           return std::string("curl_easy_perform() failed: ") + curl_easy_strerror(res);
+        }
     }
+    // Return this if curl initialization failed
+    return "Failed to initialize CURL";
 }

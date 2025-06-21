@@ -3,10 +3,13 @@
 #include "score_class.h"
 #include <string>
 #include <iostream>
+#include <limits>  // For std::numeric_limits
 
 int main() {
     int choice;
-//Do While Loop
+    std::string response;
+
+    // Do While Loop
     do {
         std::cout << "\n===== MENU =====\n";
         std::cout << "1. Login\n";
@@ -20,7 +23,7 @@ int main() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (choice) {
-           // Login User
+            // Login User
             case 1: {
                 std::string email, password;
                 std::cout << "Enter Email: ";
@@ -29,7 +32,8 @@ int main() {
                 std::getline(std::cin, password);
 
                 Login user(email, password);
-                user.sendRequest();
+                response = user.sendRequest();
+                std::cout << response << std::endl;
                 break;
             }
             // Signup User
@@ -43,10 +47,11 @@ int main() {
                 std::getline(std::cin, password);
 
                 SignUp add(username, email, password);
-                add.sendRequest();
+                response = add.sendRequest();
+                std::cout << response << std::endl;
                 break;
             }
-             // Submit Score
+            // Submit Score
             case 3: {
                 std::string email;
                 int best_time, won, lose;
@@ -64,7 +69,8 @@ int main() {
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
                 Score score(email, best_time, won, lose);
-                score.sendRequest();
+                response = score.sendRequest();
+                std::cout << response << std::endl;
                 break;
             }
             case 4:

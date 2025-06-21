@@ -21,7 +21,7 @@ public:
     Score(const std::string& mail, int bestTime, int wonCount, int loseCount);
 
     //Function To Send POST Request To The Server
-    void sendRequest();
+    std::string sendRequest();
 };
 
 #endif // SCORE_CLASS_H

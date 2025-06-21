@@ -412,7 +412,8 @@ void Game::GameReset()
     firstClickMade = false; // Important because we need to place mines after the first click
     gameState = STATE_PLAYING;
     revealedTilesCount = 0;
-    timeGameStarted = (float)GetTime();
+    timeGameStarted = GetTime(); // start timer here
+    timeGameEnded = 0.0f;        // reset end time
 }
 
 // Loads textures and sets initial game state
@@ -568,6 +569,7 @@ void Game::GameRender()
     switch (gameState)
     {
     case STATE_MAIN_MENU:
+    {
         DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
         DrawText("MINESWEEPER", 20, 20, 40, WHITE);
         DrawText("[N]ew Game", 120, 220, 20, WHITE);
@@ -575,7 +577,9 @@ void Game::GameRender()
         DrawText("ESC to QUIT", 120, 280, 20, WHITE);
         DrawText("PROGRAMMED BY PRASIDDHA", 120, 500, 20, WHITE);
         break;
+    }
     case STATE_OPTIONS_MENU:
+    {
         DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
         DrawText("Minesweeper::Options", 20, 20, 40, WHITE);
         DrawText("Press Enter For Main Menu", 150, 400, 40, RED);
@@ -606,32 +610,45 @@ void Game::GameRender()
             DrawText("OFF", 350, 250, 20, YELLOW);
         }
         break;
+    }
     case STATE_PLAYING:
+    {
         RenderTiles();
         break;
+    }
     case STATE_LOSE:
+    {
         RenderTiles();
         DrawRectangle(0, 0, screen_width, screen_height, Fade(WHITE, 0.8f));
         DrawText(labelGameLose, screen_width / 2 - MeasureText(labelGameLose, 60) / 2, screen_height / 2 - 10, 60, DARKGRAY);
         DrawText(labelEnter, screen_width / 2 - MeasureText(labelEnter, 60) / 2, (int)(screen_height * 0.75f) - 10, 34, DARKGRAY);
-        seconds = (int)(timeGameEnded - timeGameStarted) % 60;
-        DrawText(TextFormat("TIME PLAYED: %d s", seconds), 20, 40, 34, DARKGRAY);
+        float elapsed = timeGameEnded - timeGameStarted;
+        int minutes = (int)(elapsed / 60);
+        int seconds = (int)(elapsed) % 60;
+        DrawText(TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), 20, 40, 34, DARKGRAY);
         break;
+    }
     case STATE_WIN:
+    {
         RenderTiles();
         DrawRectangle(0, 0, screen_width, screen_height, Fade(WHITE, 0.8f));
         DrawText(gameState == STATE_LOSE ? labelGameLose : labelGameWin, screen_width / 2 - MeasureText(gameState == STATE_LOSE ? labelGameLose : labelGameWin, 60) / 2, screen_height / 2 - 10, 60, DARKGRAY);
         DrawText(labelEnter, screen_width / 2 - MeasureText(labelEnter, 60) / 2, (int)(screen_height * 0.75f) - 10, 34, DARKGRAY);
-        seconds = (int)(timeGameEnded - timeGameStarted) % 60;
-        DrawText(TextFormat("TIME PLAYED: %d s", seconds), 20, 40, 34, DARKGRAY);
+        float elapsed = timeGameEnded - timeGameStarted;
+        int minutes = (int)(elapsed / 60);
+        int seconds = (int)(elapsed) % 60;
+        DrawText(TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), 20, 40, 34, DARKGRAY);
         break;
+    }
     case STATE_LEVEL_SELECTION:
+    {
         DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
         DrawText("Select Difficulty", 250, 100, 40, WHITE);
         DrawText("[1] LEVEL 1 - EASY (12x12)", 200, 200, 30, LIGHTGRAY);
         DrawText("[2] LEVEL 2 - MEDIUM (15x15)", 200, 250, 30, LIGHTGRAY);
         DrawText("[3] LEVEL 3 - HARD (20x20)", 200, 300, 30, LIGHTGRAY);
         break;
+    }
     }
 }
 

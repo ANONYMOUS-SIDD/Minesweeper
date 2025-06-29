@@ -3,7 +3,13 @@
 #include <raymath.h>
 #include <string>
 #include <vector>
+#include "home_screen.cpp"
 using namespace std;
+
+// This is calling strcture variable from home_screen.cpp
+UIManager ui;
+
+Font gameFont;
 
 // Constants defining the grid size and screen resolution
 const int screen_width = 900;
@@ -79,12 +85,13 @@ Music music[MAX_MUSIC];
 // Game state definitions
 typedef enum
 {
-    STATE_MAIN_MENU = 0,
+    STATE_HOME_MENU = 0, // New home menu state
     STATE_OPTIONS_MENU,
+    STATE_LEVEL_SELECTION,
     STATE_PLAYING,
+    STATE_HOW_TO_PLAY,
     STATE_LOSE,
     STATE_WIN,
-    STATE_LEVEL_SELECTION
 } game_states;
 
 game_states gameState;
@@ -238,13 +245,11 @@ int Game::countNearbyMines(int col, int row)
     return count;
 }
 
-// Initializes all tiles and randomly places mines
+// Initializes all tiles and resets states
 void Game::ResetTiles()
 {
-    // Resize grid dynamically based on current difficulty
     grid = vector<vector<Tile>>(GetCols(), vector<Tile>(GetRows()));
 
-    // Initialize each tile's x and y position
     for (int i = 0; i < GetCols(); i++)
     {
         for (int j = 0; j < GetRows(); j++)
@@ -269,7 +274,6 @@ void Game::PlaceMinesExcluding(int safeCol, int safeRow)
         int col = GetRandomValue(0, GetCols() - 1);
         int row = GetRandomValue(0, GetRows() - 1);
 
-        // Don’t place mine at (safeCol, safeRow)
         if ((col == safeCol && row == safeRow) || grid[col][row].isMine)
             continue;
 
@@ -277,7 +281,6 @@ void Game::PlaceMinesExcluding(int safeCol, int safeRow)
         minesToPlace--;
     }
 
-    // Now calculate nearby mine counts
     for (int i = 0; i < GetCols(); i++)
     {
         for (int j = 0; j < GetRows(); j++)
@@ -290,22 +293,15 @@ void Game::PlaceMinesExcluding(int safeCol, int safeRow)
     }
 }
 
-// Renders an individual tile based on its state
 void Game::RenderTile(Tile tile)
 {
     if (tile.isRevealed)
     {
         if (tile.isMine)
         {
-            // First draws the red background
             DrawRectangle(tile.x * GetTileWidth(), tile.y * GetTileHeight(), GetTileWidth(), GetTileHeight(), RED);
-            // Then draws the bomb texture
             Rectangle source = {0, 0, (float)textures[TEXTURE_BOMB].width, (float)textures[TEXTURE_BOMB].height};
-            Rectangle dest = {
-                (float)(tile.x * GetTileWidth()),
-                (float)(tile.y * GetTileHeight()),
-                (float)GetTileWidth(),
-                (float)GetTileHeight()};
+            Rectangle dest = {(float)(tile.x * GetTileWidth()), (float)(tile.y * GetTileHeight()), (float)GetTileWidth(), (float)GetTileHeight()};
             Vector2 origin = {0, 0};
             DrawTexturePro(textures[TEXTURE_BOMB], source, dest, origin, 0.0f, WHITE);
         }
@@ -316,22 +312,17 @@ void Game::RenderTile(Tile tile)
             int w = GetTileWidth();
             int h = GetTileHeight();
 
-            // Base color with bevel
-            Color base = {220, 220, 220, 255};      // Soft light gray
-            Color highlight = {255, 255, 255, 255}; // Top-left bevel
-            Color shadow = {180, 180, 180, 255};    // Bottom-right bevel
+            Color base = {220, 220, 220, 255};
+            Color highlight = {255, 255, 255, 255};
+            Color shadow = {180, 180, 180, 255};
 
-            // Fill tile background
             DrawRectangle(x, y, w, h, base);
-
-            // Draw bevel edges
-            DrawLine(x, y, x + w - 1, y, highlight);              // top
-            DrawLine(x, y, x, y + h - 1, highlight);              // left
-            DrawLine(x, y + h - 1, x + w - 1, y + h - 1, shadow); // bottom
-            DrawLine(x + w - 1, y, x + w - 1, y + h - 1, shadow); // right
-
-            // Optional inner inset to simulate depth
+            DrawLine(x, y, x + w - 1, y, highlight);
+            DrawLine(x, y, x, y + h - 1, highlight);
+            DrawLine(x, y + h - 1, x + w - 1, y + h - 1, shadow);
+            DrawLine(x + w - 1, y, x + w - 1, y + h - 1, shadow);
             DrawRectangleLines(x + 2, y + 2, w - 4, h - 4, Fade(DARKGRAY, 0.15f));
+
             if (tile.nearbyMineCount > 0)
             {
                 Color textColor;
@@ -353,33 +344,32 @@ void Game::RenderTile(Tile tile)
                     textColor = BLACK;
                     break;
                 default:
-                    textColor = DARKGRAY; // Fallback for 6,7,8
+                    textColor = DARKGRAY;
                     break;
                 }
-                DrawText(TextFormat("%d", tile.nearbyMineCount), tile.x * GetTileWidth() + 13, tile.y * GetTileHeight() + 4, GetTileHeight() - 8, textColor);
+                string numText = TextFormat("%d", tile.nearbyMineCount);
+                int fontSize = GetTileHeight() - 8;
+                Vector2 textSize = MeasureTextEx(gameFont, numText.c_str(), fontSize, 1);
+
+                float textX = tile.x * GetTileWidth() + (GetTileWidth() - textSize.x) / 2;
+                float textY = tile.y * GetTileHeight() + (GetTileHeight() - textSize.y) / 2;
+
+                DrawTextEx(gameFont, numText.c_str(), {textX, textY}, fontSize, 1, textColor);
             }
         }
     }
     else
     {
-        Color win7Blue = {28, 99, 204, 255};    // Main tile color
-        Color highlight = {101, 164, 223, 255}; // Lighter blue for highlight (like a sheen)
-        Color shadow = {10, 50, 110, 255};      // Darker blue for shadow edges
+        Color win7Blue = {28, 99, 204, 255};
+        Color highlight = {101, 164, 223, 255};
+        Color shadow = {10, 50, 110, 255};
 
-        // Draw base tile
         DrawRectangle(tile.x * GetTileWidth(), tile.y * GetTileHeight(), GetTileWidth(), GetTileHeight(), win7Blue);
-
-        // Draw top highlight line (1 pixel height)
         DrawRectangle(tile.x * GetTileWidth(), tile.y * GetTileHeight(), GetTileWidth(), 2, highlight);
-
-        // Draw left highlight line (1 pixel width)
         DrawRectangle(tile.x * GetTileWidth(), tile.y * GetTileHeight(), 2, GetTileHeight(), highlight);
-
-        // Draw bottom shadow line (1 pixel height)
         DrawRectangle(tile.x * GetTileWidth(), tile.y * GetTileHeight() + GetTileHeight() - 2, GetTileWidth(), 2, shadow);
+        DrawRectangle(tile.x * GetTileWidth() + GetTileWidth() - 2, tile.y * GetTileHeight(), 2, GetTileHeight(), shadow);
 
-        // Draw right shadow line (1 pixel width)
-        DrawRectangle(tile.x * GetTileWidth() + GetTileWidth() - 2, tile.x * GetTileHeight(), 2, GetTileHeight(), shadow);
         if (tile.isFlagged)
         {
             Rectangle source = {0, 0, (float)textures[TEXTURE_FLAG].width, (float)textures[TEXTURE_FLAG].height};
@@ -389,11 +379,9 @@ void Game::RenderTile(Tile tile)
         }
     }
 
-    // Draw grid lines
     DrawRectangleLines(tile.x * GetTileWidth(), tile.y * GetTileHeight(), GetTileWidth(), GetTileHeight(), BLACK);
 }
 
-// Renders the entire grid of tiles
 void Game::RenderTiles()
 {
     for (int i = 0; i < currentDifficulty.cols; i++)
@@ -405,20 +393,20 @@ void Game::RenderTiles()
     }
 }
 
-// Resets the game state and tiles
 void Game::GameReset()
 {
     ResetTiles();
-    firstClickMade = false; // Important because we need to place mines after the first click
+    firstClickMade = false;
     gameState = STATE_PLAYING;
     revealedTilesCount = 0;
-    timeGameStarted = GetTime(); // start timer here
-    timeGameEnded = 0.0f;        // reset end time
+    timeGameStarted = GetTime();
+    timeGameEnded = 0.0f;
 }
 
-// Loads textures and sets initial game state
 void Game::GameStartup()
 {
+    ui.Init();
+    gameFont = LoadFont("resources/fonts/Merriweather_120pt-Regular.ttf");
     InitAudioDevice();
     Image image1 = LoadImage("minesweeper_assets/flag.png");
     textures[TEXTURE_FLAG] = LoadTextureFromImage(image1);
@@ -437,56 +425,77 @@ void Game::GameStartup()
     PlayMusicStream(music[MUSIC_ONE]);
     SetMusicVolume(music[MUSIC_ONE], 0.1f);
 
-    gameState = STATE_MAIN_MENU;
+    gameState = STATE_HOME_MENU; // Start at home menu now
 }
 
-// Handles input and updates game logic based on current state
 void Game::GameUpdate()
 {
-
     UpdateMusicStream(music[MUSIC_ONE]);
+
+    Vector2 mousePos = GetMousePosition();
+    bool mousePressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 
     switch (gameState)
     {
-    case STATE_MAIN_MENU:
-        if (IsKeyPressed(KEY_N))
-        {
-            GamePlaySound(SOUND_TWO);
-            SetSoundVolume(sounds[SOUND_TWO], 1.0f);
+    case STATE_HOME_MENU:
+    {
+        int clicked = ui.UpdateHome(mousePos, mousePressed);
+        if (clicked == 0) // New Game
             gameState = STATE_LEVEL_SELECTION;
-        }
-        else if (IsKeyPressed(KEY_O))
-        {
+        else if (clicked == 1) // Options
             gameState = STATE_OPTIONS_MENU;
-            GamePlaySound(SOUND_TWO);
-        }
+        else if (clicked == 2) // How to Play
+            gameState = STATE_HOW_TO_PLAY;
+        else if (clicked == 3) // Exit
+            CloseWindow();
         break;
+    }
     case STATE_OPTIONS_MENU:
-        if (IsKeyPressed(KEY_ENTER))
-        {
-            gameState = STATE_MAIN_MENU;
-            GamePlaySound(SOUND_TWO);
-        }
-        if (IsKeyPressed(KEY_S))
-        {
+    {
+        int clicked = ui.UpdateOptions(mousePos, mousePressed);
+        if (clicked == 0) // Toggle sound
             isSoundEnabled = !isSoundEnabled;
-            PlaySound(sounds[SOUND_TWO]);
-        }
-        if (IsKeyPressed(KEY_M))
+        else if (clicked == 1) // Toggle music
         {
             isMusicEnabled = !isMusicEnabled;
-            PlaySound(sounds[SOUND_TWO]);
             if (isMusicEnabled)
-            {
-                StopMusicStream(music[MUSIC_ONE]);
                 PlayMusicStream(music[MUSIC_ONE]);
-            }
             else
-            {
                 StopMusicStream(music[MUSIC_ONE]);
-            }
+        }
+        else if (clicked == 2) // Back
+            gameState = STATE_HOME_MENU;
+        break;
+    }
+    case STATE_LEVEL_SELECTION:
+    {
+        int clicked = ui.UpdateLevelSelection(mousePos, mousePressed);
+        if (clicked == 0)
+        {
+            currentDifficulty = easy;
+            GameReset();
+        }
+        else if (clicked == 1)
+        {
+            currentDifficulty = medium;
+            GameReset();
+        }
+        else if (clicked == 2)
+        {
+            currentDifficulty = hard;
+            GameReset();
         }
         break;
+    }
+    case STATE_HOW_TO_PLAY:
+    {
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            gameState = STATE_HOME_MENU;
+        }
+        break;
+    }
+
     case STATE_PLAYING:
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
@@ -511,41 +520,22 @@ void Game::GameUpdate()
         if (IsKeyPressed(KEY_ENTER))
         {
             GamePlaySound(SOUND_TWO);
-            SetSoundVolume(sounds[SOUND_ONE], 1.0f);
-            gameState = STATE_MAIN_MENU;
+            gameState = STATE_HOME_MENU;
         }
         break;
     case STATE_WIN:
         if (IsKeyPressed(KEY_ENTER))
         {
             GamePlaySound(SOUND_TWO);
-            SetSoundVolume(sounds[SOUND_ONE], 1.0f);
-            gameState = STATE_MAIN_MENU;
-        }
-        break;
-    case STATE_LEVEL_SELECTION:
-        if (IsKeyPressed(KEY_ONE))
-        {
-            currentDifficulty = easy;
-            GameReset();
-        }
-        else if (IsKeyPressed(KEY_TWO))
-        {
-            currentDifficulty = medium;
-            GameReset();
-        }
-        else if (IsKeyPressed(KEY_THREE))
-        {
-            currentDifficulty = hard;
-            GameReset();
+            gameState = STATE_HOME_MENU;
         }
         break;
     }
 }
 
-// Frees all textures and shuts down audio
 void Game::GameShutdown()
 {
+    ui.Unload();
     for (int i = 0; i < MAX_TEXTURES; i++)
     {
         UnloadTexture(textures[i]);
@@ -558,116 +548,85 @@ void Game::GameShutdown()
 
     StopMusicStream(music[MUSIC_ONE]);
     UnloadMusicStream(music[MUSIC_ONE]);
+    UnloadFont(gameFont);
 
     CloseAudioDevice();
 }
 
-// Handles rendering for all game states
 void Game::GameRender()
 {
-    int seconds = 0;
     switch (gameState)
     {
-    case STATE_MAIN_MENU:
-    {
-        DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
-        DrawText("MINESWEEPER", 20, 20, 40, WHITE);
-        DrawText("[N]ew Game", 120, 220, 20, WHITE);
-        DrawText("[O]ptions", 120, 250, 20, WHITE);
-        DrawText("ESC to QUIT", 120, 280, 20, WHITE);
-        DrawText("PROGRAMMED BY PRASIDDHA", 120, 500, 20, WHITE);
+    case STATE_HOME_MENU: // or STATE_HOME_MENU
+        ui.DrawHome();
         break;
-    }
     case STATE_OPTIONS_MENU:
-    {
-        DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
-        DrawText("Minesweeper::Options", 20, 20, 40, WHITE);
-        DrawText("Press Enter For Main Menu", 150, 400, 40, RED);
-        DrawText("[S]ound", 120, 220, 20, WHITE);
-        if (isSoundEnabled)
-        {
-            DrawText("ON", 280, 220, 20, YELLOW);
-            DrawText("/", 310, 220, 20, WHITE);
-            DrawText("OFF", 350, 220, 20, WHITE);
-        }
-        else
-        {
-            DrawText("ON", 280, 220, 20, WHITE);
-            DrawText("/", 310, 220, 20, WHITE);
-            DrawText("OFF", 350, 220, 20, YELLOW);
-        }
-        DrawText("[M]usic", 120, 250, 20, WHITE);
-        if (isMusicEnabled)
-        {
-            DrawText("ON", 280, 250, 20, YELLOW);
-            DrawText("/", 310, 250, 20, WHITE);
-            DrawText("OFF", 350, 250, 20, WHITE);
-        }
-        else
-        {
-            DrawText("ON", 280, 250, 20, WHITE);
-            DrawText("/", 310, 250, 20, WHITE);
-            DrawText("OFF", 350, 250, 20, YELLOW);
-        }
+        ui.DrawOptions(isSoundEnabled, isMusicEnabled);
         break;
-    }
+    case STATE_LEVEL_SELECTION:
+        ui.DrawLevelSelection();
+        break;
     case STATE_PLAYING:
     {
         RenderTiles();
         break;
     }
+    case STATE_HOW_TO_PLAY:
+    {
+        ui.DrawHowToPlay();
+        break;
+    }
+
     case STATE_LOSE:
     {
         RenderTiles();
         DrawRectangle(0, 0, screen_width, screen_height, Fade(WHITE, 0.8f));
-        DrawText(labelGameLose, screen_width / 2 - MeasureText(labelGameLose, 60) / 2, screen_height / 2 - 10, 60, DARKGRAY);
-        DrawText(labelEnter, screen_width / 2 - MeasureText(labelEnter, 60) / 2, (int)(screen_height * 0.75f) - 10, 34, DARKGRAY);
+        DrawTextEx(gameFont, labelGameLose, {(float)(screen_width / 2 - MeasureTextEx(gameFont, labelGameLose, 60, 1).x / 2), (float)(screen_height / 2 - 10)}, 60, 1, DARKGRAY);
+        DrawTextEx(gameFont, labelEnter, {(float)(screen_width / 2 - MeasureTextEx(gameFont, labelEnter, 34, 1).x / 2), (float)((int)(screen_height * 0.75f) - 10)}, 34, 1, DARKGRAY);
         float elapsed = timeGameEnded - timeGameStarted;
         int minutes = (int)(elapsed / 60);
         int seconds = (int)(elapsed) % 60;
-        DrawText(TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), 20, 40, 34, DARKGRAY);
+        DrawTextEx(gameFont, TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), {20.0f, 40.0f}, 34, 1, DARKGRAY);
         break;
     }
     case STATE_WIN:
     {
         RenderTiles();
         DrawRectangle(0, 0, screen_width, screen_height, Fade(WHITE, 0.8f));
-        DrawText(gameState == STATE_LOSE ? labelGameLose : labelGameWin, screen_width / 2 - MeasureText(gameState == STATE_LOSE ? labelGameLose : labelGameWin, 60) / 2, screen_height / 2 - 10, 60, DARKGRAY);
-        DrawText(labelEnter, screen_width / 2 - MeasureText(labelEnter, 60) / 2, (int)(screen_height * 0.75f) - 10, 34, DARKGRAY);
+        DrawTextEx(gameFont, labelGameWin, {(float)(screen_width / 2 - MeasureTextEx(gameFont, labelGameWin, 60, 1).x / 2), (float)(screen_height / 2 - 10)}, 60, 1, DARKGRAY);
+        DrawTextEx(gameFont, labelEnter, {(float)(screen_width / 2 - MeasureTextEx(gameFont, labelEnter, 34, 1).x / 2), (float)((int)(screen_height * 0.75f) - 10)}, 34, 1, DARKGRAY);
         float elapsed = timeGameEnded - timeGameStarted;
         int minutes = (int)(elapsed / 60);
         int seconds = (int)(elapsed) % 60;
-        DrawText(TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), 20, 40, 34, DARKGRAY);
-        break;
-    }
-    case STATE_LEVEL_SELECTION:
-    {
-        DrawRectangle(0, 0, screen_width, screen_height, DARKBLUE);
-        DrawText("Select Difficulty", 250, 100, 40, WHITE);
-        DrawText("[1] LEVEL 1 - EASY (12x12)", 200, 200, 30, LIGHTGRAY);
-        DrawText("[2] LEVEL 2 - MEDIUM (15x15)", 200, 250, 30, LIGHTGRAY);
-        DrawText("[3] LEVEL 3 - HARD (20x20)", 200, 300, 30, LIGHTGRAY);
+        DrawTextEx(gameFont, TextFormat("TIME PLAYED: %02d:%02d", minutes, seconds), {20.0f, 40.0f}, 34, 1, DARKGRAY);
         break;
     }
     }
 }
 
-// Entry point of the application
 int main()
 {
-    InitWindow(screen_width, screen_height, "Minesweeper game");
-    SetTargetFPS(60);
+
+    InitWindow(screen_width, screen_height, "Minesweeper by Prasiddha");
+    SetExitKey(KEY_NULL);
     Game game;
     game.GameStartup();
+
+    SetTargetFPS(60);
+
     while (!WindowShouldClose())
     {
         game.GameUpdate();
+
         BeginDrawing();
-        ClearBackground(DARKBLUE);
+        ClearBackground(RAYWHITE);
+
         game.GameRender();
+
         EndDrawing();
     }
+
     game.GameShutdown();
-    CloseWindow();
+
     return 0;
 }

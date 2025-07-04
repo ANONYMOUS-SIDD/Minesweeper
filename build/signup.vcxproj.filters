@@ -4,6 +4,12 @@
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\sweep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\SplashScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\signup_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -11,6 +17,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\score_class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\SignUpScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\LoginScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\home_screen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

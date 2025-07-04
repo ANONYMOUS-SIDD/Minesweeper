@@ -202,7 +202,8 @@ void Game::PlaceMinesExcluding(int safeCol, int safeRow)
 
 void Game::RenderTile(Tile tile)
 {
-    if (tile.isRevealed)
+    bool showMine = (gameState == STATE_LOSE || gameState == STATE_WIN) && tile.isMine;
+    if (tile.isRevealed || showMine)
     {
         if (tile.isMine)
         {

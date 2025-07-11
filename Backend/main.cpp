@@ -40,6 +40,7 @@ int main()
         {
         pqxx::work txn(conn);
         txn.exec(R"(CREATE TABLE IF NOT EXISTS PlayerStats (
+          user_name TEXT,
             email TEXT PRIMARY KEY REFERENCES Users(email),
             best_time INT,
             won INT,
@@ -79,12 +80,19 @@ int main()
         pqxx::work txn(conn);
         //Query To Fetch The Existing User
         std::string fetch_query = "SELECT 1 FROM Users WHERE email = $1 LIMIT 1";
-        //Execute Fetch Query
-        pqxx::result r = txn.exec_params(fetch_query, email);
+          pqxx::result r = txn.exec_params(fetch_query, email);
         //Check The Status After Running The Query
         if (!r.empty()) {
-            return crow::response(409, "User Already Exists !");
+            return crow::response(409, "Email Already In Use !");
         }
+            std::string fetch_query_username = "SELECT 1 FROM Users WHERE username = $1 LIMIT 1";
+        //Execute Fetch Query
+                pqxx::result ruser = txn.exec_params(fetch_query_username, username);
+                   if (!ruser.empty()) {
+            return crow::response(409, "User Name Already In Use!");
+        }
+
+
         //Query To Insert New User To Database (store hashed password)
         std::string insert_query = "INSERT INTO Users (username, email, password) VALUES ($1, $2, $3)";
         //Execute Insert Query
@@ -128,65 +136,77 @@ int main()
 
         //Player Status Route
     //Route To Handle POST Request On /playersInfo Endpoint
-CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::POST)([&conn](const crow::request &req) {
-    //Parse The JSON Body From The Request
-    auto body = crow::json::load(req.body);
-    if (!body) {
-        //Return Error If JSON Parsing Fails
-        return crow::response(400, "Failed To Parse JSON Data");
-    }
+CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::POST)(
+    [&conn](const crow::request& req) {
+        // Parse the JSON body from the request
+        auto body = crow::json::load(req.body);
+        if (!body) {
+            return crow::response(400, "Failed to parse JSON data");
+        }
+        // Extract fields
+           std::string user_name = "Anonymous";
+     if (body.has("user_name")) {
+         std::string user_name = body["user_name"].s();
 
-    //Extract Email And Game Stats From The JSON Body
-    std::string email = body["email"].s();
-    int best_time = body.has("best_time") ? body["best_time"].i() : 0;
-    int won = body.has("won") ? body["won"].i() : 0;
-    int lose = body.has("lose") ? body["lose"].i() : 0;
+}
 
-    //Begin Transaction With The PostgreSQL Database
-    pqxx::work txn(conn);
 
-    //SQL Query To Check If The User Already Exists Based On Email
-    std::string check_query = "SELECT best_time, won, lose FROM PlayerStats WHERE email = $1";
-    pqxx::result r = txn.exec_params(check_query, email);
+        std::string email = body["email"].s();
+        int best_time = body.has("best_time") ? body["best_time"].i() : 0;
+        int won = body.has("won") ? body["won"].i() : 0;
+        int lose = body.has("lose") ? body["lose"].i() : 0;
 
-    //If Record Exists, Update The Existing Entry
-    if (!r.empty()) {
-        //Retrieve Previous Stats From The Database
-        int prev_best = r[0][0].is_null() ? 0 : r[0][0].as<int>();
-        int prev_won = r[0][1].is_null() ? 0 : r[0][1].as<int>();
-        int prev_lose = r[0][2].is_null() ? 0 : r[0][2].as<int>();
+        try {
+            // Start transaction
+            pqxx::work txn(conn);
 
-        //Update Best Time Only If New Best Time Is Greater Or Previous Is Zero
-        int updated_best_time = (best_time != 0 && (best_time > prev_best || prev_best == 0))
-                                  ? best_time
-                                  : prev_best;
+            // Check if player already exists
+            std::string check_query = "SELECT user_name, best_time, won, lose FROM PlayerStats WHERE email = $1";
+            pqxx::result r = txn.exec_params(check_query, email);
 
-        //SQL Query To Update Existing Record With New Stats
-        std::string update_query = "UPDATE PlayerStats SET best_time = $2, won = $3, lose = $4 WHERE email = $1";
-        txn.exec_params(update_query, email, updated_best_time, prev_won + won, prev_lose + lose);
-    } else {
-        //If No Record Exists, Insert A New One
-        txn.exec_params("INSERT INTO PlayerStats (email, best_time, won, lose) VALUES ($1, $2, $3, $4)",
-                        email, best_time, won, lose);
-    }
+            if (!r.empty()) {
+                // Extract previous stats (correct indexes)
+                int prev_best = r[0][1].is_null() ? 0 : r[0][1].as<int>();
+                int prev_won = r[0][2].is_null() ? 0 : r[0][2].as<int>();
+                int prev_lose = r[0][3].is_null() ? 0 : r[0][3].as<int>();
 
-    //Commit The Transaction To Save Changes
-    txn.commit();
+                // Update best time if better or no previous time
+                int updated_best_time = (best_time != 0 && (best_time < prev_best || prev_best == 0))
+                                          ? best_time
+                                          : prev_best;
 
-    //Return Success Response
-    return crow::response(201, "Player stats saved successfully!");
-});
+                // Update existing record
+                std::string update_query = "UPDATE PlayerStats SET best_time = $2, won = $3, lose = $4 WHERE email = $1";
+                txn.exec_params(update_query, email, updated_best_time, prev_won + won, prev_lose + lose);
+
+                txn.commit();
+                return crow::response(200, "Player stats updated successfully!");
+            } else {
+                // Insert new player record
+                std::string insert_query = "INSERT INTO PlayerStats (user_name, email, best_time, won, lose) VALUES ($1, $2, $3, $4, $5)";
+                txn.exec_params(insert_query, user_name, email, best_time, won, lose);
+
+                txn.commit();
+                return crow::response(201, "Player stats created successfully!");
+            }
+        } catch (const std::exception& e) {
+            return crow::response(500, std::string("Database error: ") + e.what());
+        }
+    });
+
 CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::GET)([&conn]() {
     try {
         pqxx::work txn(conn);
 
         // Query top 5 players by best_time ascending (lowest best_time first)
-        pqxx::result r = txn.exec("SELECT * FROM PlayerStats ORDER BY best_time ASC LIMIT 5");
+pqxx::result r = txn.exec("SELECT * FROM PlayerStats WHERE best_time != 0 ORDER BY best_time ASC LIMIT 5");
+
 
         crow::json::wvalue::list player_list;
 
         for (const auto& row : r) {
             crow::json::wvalue player;
+             player["user_name"] = row["user_name"].c_str();
             player["email"] = row["email"].c_str();
             player["best_time"] = row["best_time"].is_null() ? 0 : row["best_time"].as<int>();
             player["won"] = row["won"].is_null() ? 0 : row["won"].as<int>();

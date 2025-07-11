@@ -64,6 +64,7 @@ int main()
     std::vector<PlayerData> players = LeaderBoard::fetchTopPlayers(url);
 
     for (const auto& player : players) {
+              std::cout << "UserName     : " << player.user_name << "\n";
         std::cout << "Email     : " << player.email << "\n";
         std::cout << "Best Time : " << player.bestTime/60<<" min"<<":"<<player.bestTime%60 <<" second"<< "\n";
         std::cout << "Wins      : " << player.won << "\n";

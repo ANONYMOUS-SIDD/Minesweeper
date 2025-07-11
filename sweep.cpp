@@ -581,7 +581,7 @@ void Game::DrawEndScreen(bool isWin, float timePlayed)
 
 
     }else{
-      Score add(email,timePlayed,0,1);
+      Score add(email,0,0,1);
            result=add.sendRequest();
                 updated=true;
       cout<<result;

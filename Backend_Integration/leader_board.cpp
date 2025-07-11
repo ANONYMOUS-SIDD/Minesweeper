@@ -28,6 +28,7 @@ std::vector<PlayerData> LeaderBoard::fetchTopPlayers(const std::string& url) {
                 json responseJson = json::parse(responseString);
                 for (const auto& item : responseJson["players"]) {
                     PlayerData player;
+                              player.user_name = item["user_name"].get<std::string>();
                     player.email = item["email"].get<std::string>();
                     player.bestTime = item["best_time"].get<int>();
                     player.won = item["won"].get<int>();

@@ -9,6 +9,7 @@
 #include "signup_class.h"
 #include <iostream>
 #include <ctype.h>
+#include"score_class.h"
 
 // Constructor: Load resources and initialize variables
 SignUpScreen::SignUpScreen(int screenWidth, int screenHeight) : screenWidth(screenWidth), screenHeight(screenHeight),
@@ -109,9 +110,12 @@ void SignUpScreen::Update()
             // Simulate account creation if no errors
             if (strlen(fullNameError) == 0 && strlen(emailError) == 0 && strlen(passwordError) == 0)
             {
+
                     SignUp add(fullName, emailText, passwordText);
+    ;
           std::string response = add.sendRequest();
           std::cout << response << std::endl;
+
 
           strncpy(responseMessage, response.c_str(), sizeof(responseMessage) - 1);
           responseMessage[sizeof(responseMessage) - 1] = '\0';
@@ -282,6 +286,10 @@ void SignUpScreen::Draw()
 
       Vector2 textPos = {x, 850};
       DrawTextEx(font, responseMessage, textPos, 25, 1.0f, WHITE);
+
+           Score create(fullName,emailText,0,0,0);
+          std::string result=create.initRequest();
+
     }
     else
     {

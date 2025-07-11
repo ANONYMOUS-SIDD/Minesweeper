@@ -5,6 +5,7 @@
 #include <vector>
 
 struct PlayerData {
+  std::string user_name;
     std::string email;
     int bestTime;
     int won;

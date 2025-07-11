@@ -140,5 +140,4 @@ public:
     int GetTileWidth();
     int GetTileHeight();
 };
-
 #endif // SWEEP_H

@@ -1,13 +1,15 @@
 #include "home_screen.h"
 #include <raylib.h>
+#include <string>
+#include <vector>
 
 // -------- Button class --------
 
 Button::Button(float x, float y, float w, float h, const std::string &label)
     : rect({x, y, w, h}), text(label), hovered(false)
 {
-    baseColor = {40, 50, 70, 255};   // Deep blue-gray
-    hoverColor = {60, 80, 120, 255}; // Lighter blue on hover
+    baseColor = {40, 50, 70, 255};   // Placeholder, gets updated in UIManager::Init
+    hoverColor = {60, 80, 120, 255}; // Placeholder, gets updated in UIManager::Init
     textColor = RAYWHITE;
 }
 
@@ -49,6 +51,7 @@ void Button::Draw(Font *font)
     }
 }
 
+
 bool Button::Update(Vector2 mousePos, bool mousePressed)
 {
     hovered = CheckCollisionPointRec(mousePos, rect);
@@ -87,10 +90,8 @@ void UIManager::Init()
 
 void UIManager::Unload()
 {
-    if (customFont.texture.id != 0)
-        UnloadFont(customFont);
-    if (homeIcon.id != 0)
-        UnloadTexture(homeIcon);
+    if (customFont.texture.id != 0) UnloadFont(customFont);
+    if (homeIcon.id != 0) UnloadTexture(homeIcon);
 }
 
 int UIManager::UpdateHome(Vector2 mousePos, bool mousePressed)
@@ -99,8 +100,7 @@ int UIManager::UpdateHome(Vector2 mousePos, bool mousePressed)
     {
         if (homeButtons[i].Update(mousePos, mousePressed))
         {
-            if (i == 4) // Exit button
-                CloseWindow();
+            if (i == 4) CloseWindow();
             return i;
         }
     }
@@ -112,13 +112,6 @@ void UIManager::DrawHome()
     ClearBackground({22, 28, 40, 255});
     DrawTextEx(customFont, "MINESWEEPER", {180, 80}, 72, 1, RAYWHITE);
 
-    float iconW = 90, iconH = 90;
-    float iconX = 450 - iconW / 2;
-    float iconY = 200;
-    if (homeIcon.id != 0)
-        DrawTexturePro(homeIcon, {0, 0, (float)homeIcon.width, (float)homeIcon.height},
-                       {iconX, iconY, iconW, iconH}, {0, 0}, 0, WHITE);
-
     for (auto &btn : homeButtons)
         btn.Draw(&customFont);
 }
@@ -127,8 +120,7 @@ int UIManager::UpdateOptions(Vector2 mousePos, bool mousePressed)
 {
     for (int i = 0; i < (int)optionsButtons.size(); i++)
     {
-        if (optionsButtons[i].Update(mousePos, mousePressed))
-            return i;
+        if (optionsButtons[i].Update(mousePos, mousePressed)) return i;
     }
     return -1;
 }
@@ -143,13 +135,9 @@ void UIManager::DrawOptions(bool soundOn, bool musicOn)
         Button &btn = optionsButtons[i];
         btn.Draw(&customFont);
         if (i == 0)
-        {
             DrawText(soundOn ? "ON" : "OFF", (int)(btn.rect.x + btn.rect.width - 60), (int)(btn.rect.y + 15), 36, soundOn ? GREEN : RED);
-        }
         else if (i == 1)
-        {
             DrawText(musicOn ? "ON" : "OFF", (int)(btn.rect.x + btn.rect.width - 60), (int)(btn.rect.y + 15), 36, musicOn ? GREEN : RED);
-        }
     }
 }
 
@@ -157,8 +145,7 @@ int UIManager::UpdateLevelSelection(Vector2 mousePos, bool mousePressed)
 {
     for (int i = 0; i < (int)levelButtons.size(); i++)
     {
-        if (levelButtons[i].Update(mousePos, mousePressed))
-            return i;
+        if (levelButtons[i].Update(mousePos, mousePressed)) return i;
     }
     return -1;
 }
@@ -180,11 +167,7 @@ void UIManager::DrawHowToPlay()
     DrawRectangleRounded(box, 0.15f, 12, {30, 40, 60, 220});
     DrawRectangleRoundedLines(box, 0.15f, 12, BLACK);
 
-    struct Instruction
-    {
-        const char *text;
-        int icon; // 0 = bomb, 1 = flag, -1 = no icon
-    };
+    struct Instruction { const char *text; int icon; };
 
     Instruction instructions[] = {
         {"Left Click: Reveal tile", 0},
@@ -192,11 +175,11 @@ void UIManager::DrawHowToPlay()
         {"Reveal all safe tiles to win.", -1},
         {"Avoid the mines!", -1},
         {"", -1},
-        {"Press ENTER to return to the main menu.", -1}};
+        {"Press ENTER to return to the main menu.", -1} };
 
     static Texture2D icons[2] = {
         LoadTexture("resources/minesweeper_assets/images/bomb.png"),
-        LoadTexture("resources/minesweeper_assets/images/flag.png")};
+        LoadTexture("resources/minesweeper_assets/images/flag.png") };
 
     const float iconSize = 32.0f;
     const float iconPadding = 12.0f;
@@ -213,8 +196,7 @@ void UIManager::DrawHowToPlay()
             float iconY = y + (lineHeight - iconSize) / 2.0f;
             Rectangle sourceRec = {0, 0, (float)icons[instructions[i].icon].width, (float)icons[instructions[i].icon].height};
             Rectangle destRec = {(float)startX, iconY, iconSize, iconSize};
-            Vector2 origin = {0, 0};
-            DrawTexturePro(icons[instructions[i].icon], sourceRec, destRec, origin, 0.0f, WHITE);
+            DrawTexturePro(icons[instructions[i].icon], sourceRec, destRec, {0, 0}, 0.0f, WHITE);
 
             float textX = startX + iconSize + iconPadding;
             DrawTextEx(customFont, instructions[i].text, {textX, (float)y}, 30, 1, BLACK);
@@ -224,6 +206,4 @@ void UIManager::DrawHowToPlay()
             DrawTextEx(customFont, instructions[i].text, {(float)startX, (float)y}, 30, 1, BLACK);
         }
     }
-
-    // Note: UnloadTexture(icons[0]) and UnloadTexture(icons[1]) should be called in UIManager::Unload()
 }

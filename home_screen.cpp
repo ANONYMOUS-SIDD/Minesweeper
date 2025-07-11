@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-// -------- Button class --------
+//  Button class 
 
 Button::Button(float x, float y, float w, float h, const std::string &label)
     : rect({x, y, w, h}), text(label), hovered(false)
@@ -58,7 +58,7 @@ bool Button::Update(Vector2 mousePos, bool mousePressed)
     return hovered && mousePressed;
 }
 
-// -------- UIManager class --------
+//  UIManager class 
 
 void UIManager::Init()
 {

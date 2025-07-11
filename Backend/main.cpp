@@ -176,6 +176,36 @@ CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::POST)([&conn](const cr
     //Return Success Response
     return crow::response(201, "Player stats saved successfully!");
 });
+CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::GET)([&conn]() {
+    try {
+        pqxx::work txn(conn);
+
+        // Query top 5 players by best_time ascending (lowest best_time first)
+        pqxx::result r = txn.exec("SELECT * FROM PlayerStats ORDER BY best_time ASC LIMIT 5");
+
+        crow::json::wvalue::list player_list;
+
+        for (const auto& row : r) {
+            crow::json::wvalue player;
+            player["email"] = row["email"].c_str();
+            player["best_time"] = row["best_time"].is_null() ? 0 : row["best_time"].as<int>();
+            player["won"] = row["won"].is_null() ? 0 : row["won"].as<int>();
+            player["lose"] = row["lose"].is_null() ? 0 : row["lose"].as<int>();
+
+            player_list.emplace_back(std::move(player));
+        }
+
+        crow::json::wvalue result;
+        result["players"] = std::move(player_list);
+
+        return crow::response(200, result);
+    } catch (const std::exception& e) {
+        return crow::response(500, std::string("Server Error: ") + e.what());
+    }
+});
+
+
+
 
 
   // Open Port Number 18080 To Establish The Connection Between Device And Server

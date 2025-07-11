@@ -390,6 +390,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\SignUpScreen.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\LoginScreen.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\home_screen.cpp" />
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\leader_board.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -3,6 +3,7 @@
 
 #include <raylib.h>
 #include <vector>
+#include<string>
 using namespace std;
 
 #define MAX_TEXTURES 2
@@ -133,6 +134,9 @@ public:
     void RevealTilesFrom(int, int);     // Reveal adjacent tiles
     void PlaceMinesExcluding(int, int); // Place mines excluding a specific tile
     void DrawEndScreen(bool, float);    // Draw end screen with win/lose message
+
+    //Set Email
+    static void setEmail(string email);
 
     // Global variables for grid dimensions
     int GetCols();

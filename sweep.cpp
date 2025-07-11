@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include "home_screen.h"
+#include "score_class.h"
+#include<iostream>
 using namespace std;
 
 // This is calling strcture variable from home_screen.cpp
@@ -19,6 +21,8 @@ const int screen_height = 970;
 const char *labelGameWin = "You Win";
 const char *labelGameLose = "Game Over";
 const char *labelEnter = "Press ENTER for Main Menu";
+string result;
+string email;
 
 // Time tracking variables
 float timeGameEnded;
@@ -31,6 +35,8 @@ const float loadingDuration = 6.0f; // 4 seconds
 // Sound Variables
 bool isSoundEnabled = true;
 bool isMusicEnabled = true;
+bool updated=false;
+
 
 Difficulty easy = {12, 12, (int)(12 * 12 * 0.1f)};    // 10% mines approx
 Difficulty medium = {15, 15, (int)(15 * 15 * 0.15f)}; // ~15% mines
@@ -58,6 +64,10 @@ void Game::GamePlaySound(int sound)
     {
         PlaySound(sounds[sound]);
     }
+}
+//Set Email
+void Game::setEmail(string userEmail){
+  email=userEmail;
 }
 
 // Checks if a given tile index is within bounds
@@ -505,6 +515,7 @@ void Game::GameRender()
         break;
     case STATE_LEVEL_SELECTION:
         ui.DrawLevelSelection();
+        updated=false;
         break;
     case STATE_PLAYING:
     {
@@ -528,6 +539,7 @@ void Game::GameRender()
     {
         RenderTiles();
         float elapsed = timeGameEnded - timeGameStarted;
+
         DrawEndScreen(true, elapsed);
         break;
     }
@@ -559,6 +571,24 @@ void Game::DrawEndScreen(bool isWin, float timePlayed)
     int seconds = (int)(timePlayed) % 60;
     char timeStr[32];
     snprintf(timeStr, sizeof(timeStr), "Time Played: %02d:%02d", minutes, seconds);
+    //Backend Integration To Update Score
+     if(!updated){
+       if(isWin){
+           Score add(email,timePlayed,1,0);
+           result=add.sendRequest();
+           updated=true;
+      cout<<result;
+
+
+    }else{
+      Score add(email,timePlayed,0,1);
+           result=add.sendRequest();
+                updated=true;
+      cout<<result;
+    }
+
+     }
+
 
     Vector2 timeSize = MeasureTextEx(gameFont, timeStr, 36, 1);
     Vector2 timePos = {(screen_width - timeSize.x) / 2, textPos.y + fontSize + 40};
@@ -576,8 +606,12 @@ void Game::DrawEndScreen(bool isWin, float timePlayed)
     Vector2 promptSize = MeasureTextEx(gameFont, prompt, 28, 1);
     Vector2 promptPos = {(screen_width - promptSize.x) / 2, screen_height * 0.75f};
 
-    if (showPrompt)
-        DrawTextEx(gameFont, prompt, promptPos, 28, 1, Fade(WHITE, 0.8f));
+    if (showPrompt){
+
+       DrawTextEx(gameFont, prompt, promptPos, 28, 1, Fade(WHITE, 0.8f));
+
+    }
+
 }
 int Game::GetCols()
 {

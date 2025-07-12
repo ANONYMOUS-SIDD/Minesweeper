@@ -60,17 +60,7 @@ int main()
     SignUpScreen signupScreen(screen_width, screen_height);
     LoginScreen loginScreen(screen_width, screen_height);
     SplashScreen splashScreen;
- std::string url = "http://localhost:18080/playersInfo";  // Adjust to your actual GET endpoint
-    std::vector<PlayerData> players = LeaderBoard::fetchTopPlayers(url);
-
-    for (const auto& player : players) {
-              std::cout << "UserName     : " << player.user_name << "\n";
-        std::cout << "Email     : " << player.email << "\n";
-        std::cout << "Best Time : " << player.bestTime/60<<" min"<<":"<<player.bestTime%60 <<" second"<< "\n";
-        std::cout << "Wins      : " << player.won << "\n";
-        std::cout << "Losses    : " << player.lose << "\n";
-        std::cout << "--------------------------\n";
-    }
+ 
 
 
 

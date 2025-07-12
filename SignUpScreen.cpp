@@ -287,8 +287,10 @@ void SignUpScreen::Draw()
       Vector2 textPos = {x, 850};
       DrawTextEx(font, responseMessage, textPos, 25, 1.0f, WHITE);
 
+
            Score create(fullName,emailText,0,0,0);
           std::string result=create.initRequest();
+
 
     }
     else

@@ -144,11 +144,9 @@ CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::POST)(
             return crow::response(400, "Failed to parse JSON data");
         }
         // Extract fields
-           std::string user_name = "Anonymous";
-     if (body.has("user_name")) {
-         std::string user_name = body["user_name"].s();
 
-}
+
+
 
 
         std::string email = body["email"].s();
@@ -183,11 +181,17 @@ CROW_ROUTE(app, "/playersInfo").methods(crow::HTTPMethod::POST)(
                 return crow::response(200, "Player stats updated successfully!");
             } else {
                 // Insert new player record
+                if(body.has("user_name")){
+                   std::string user_name = body["user_name"].s();
                 std::string insert_query = "INSERT INTO PlayerStats (user_name, email, best_time, won, lose) VALUES ($1, $2, $3, $4, $5)";
                 txn.exec_params(insert_query, user_name, email, best_time, won, lose);
 
                 txn.commit();
                 return crow::response(201, "Player stats created successfully!");
+
+                }
+                   return crow::response(201, "Failed !");
+
             }
         } catch (const std::exception& e) {
             return crow::response(500, std::string("Database error: ") + e.what());

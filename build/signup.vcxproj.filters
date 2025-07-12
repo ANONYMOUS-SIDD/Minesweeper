@@ -7,6 +7,9 @@
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\sweep.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\leaderboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\SplashScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -140,7 +140,7 @@ DrawRectangleRounded(Rectangle{0.0f, 350.0f, (float)screenWidth, (float)(screenH
     DrawTextEx(font, " LOG IN ", Vector2{350, 350}, 45.0f, 2.0f, BLUE);
 
     // Email Field
-    DrawTextEx(font, "Email Address", Vector2{50, 435}, 25.0f, 2.0f, BLACK);
+    DrawTextEx(font, "Email Address", Vector2{50, 460}, 25.0f, 2.0f, BLACK);
     // Blinking cursor in email
     if (emailFocused)
         DrawRectangleRounded(Rectangle{38.0f, 488.0f, (float)(screenWidth - 76), 74.0f}, 0.4f, 20, BLUE);

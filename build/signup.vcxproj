@@ -383,6 +383,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\main.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\sweep.cpp" />
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\leaderboard.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\SplashScreen.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\signup_class.cpp" />
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\login_class.cpp" />

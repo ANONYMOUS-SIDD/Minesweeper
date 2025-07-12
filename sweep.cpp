@@ -4,9 +4,20 @@
 #include <string>
 #include <vector>
 #include "home_screen.h"
+#include"leaderboard.h"
 #include "score_class.h"
 #include<iostream>
 using namespace std;
+
+static Color LerpColor(Color a, Color b, float t)
+{
+    Color result;
+    result.r = (unsigned char)(a.r + (b.r - a.r) * t);
+    result.g = (unsigned char)(a.g + (b.g - a.g) * t);
+    result.b = (unsigned char)(a.b + (b.b - a.b) * t);
+    result.a = (unsigned char)(a.a + (b.a - a.a) * t);
+    return result;
+}
 
 // This is calling strcture variable from home_screen.cpp
 UIManager ui;
@@ -36,7 +47,6 @@ const float loadingDuration = 6.0f; // 4 seconds
 bool isSoundEnabled = true;
 bool isMusicEnabled = true;
 bool updated=false;
-
 
 Difficulty easy = {12, 12, (int)(12 * 12 * 0.1f)};    // 10% mines approx
 Difficulty medium = {15, 15, (int)(15 * 15 * 0.15f)}; // ~15% mines
@@ -212,7 +222,8 @@ void Game::PlaceMinesExcluding(int safeCol, int safeRow)
 
 void Game::RenderTile(Tile tile)
 {
-    if (tile.isRevealed)
+    bool showMine = (gameState == STATE_LOSE || gameState == STATE_WIN) && tile.isMine;
+    if (tile.isRevealed || showMine)
     {
         if (tile.isMine)
         {
@@ -344,7 +355,6 @@ void Game::GameStartup()
 
     gameState = STATE_LOADING;
     loadingTime = 0.0f;
-
 }
 
 void Game::GameUpdate()
@@ -460,6 +470,14 @@ void Game::GameUpdate()
             gameState = STATE_HOME_MENU;
         }
         break;
+    case STATE_LEADERBOARD:
+    {
+        if (IsKeyPressed(KEY_ENTER))
+        {
+            gameState = STATE_HOME_MENU;
+        }
+        break;
+    }
     }
 }
 
@@ -515,7 +533,7 @@ void Game::GameRender()
         break;
     case STATE_LEVEL_SELECTION:
         ui.DrawLevelSelection();
-        updated=false;
+           updated=false;
         break;
     case STATE_PLAYING:
     {
@@ -539,9 +557,12 @@ void Game::GameRender()
     {
         RenderTiles();
         float elapsed = timeGameEnded - timeGameStarted;
-
         DrawEndScreen(true, elapsed);
         break;
+    }
+    case STATE_LEADERBOARD:
+    {
+        RenderLeaderboardScreen(gameFont, screen_width, screen_height);
     }
     }
 }
@@ -571,7 +592,8 @@ void Game::DrawEndScreen(bool isWin, float timePlayed)
     int seconds = (int)(timePlayed) % 60;
     char timeStr[32];
     snprintf(timeStr, sizeof(timeStr), "Time Played: %02d:%02d", minutes, seconds);
-    //Backend Integration To Update Score
+
+    //Backend Integration
      if(!updated){
        if(isWin){
            Score add(email,timePlayed,1,0);
@@ -606,12 +628,8 @@ void Game::DrawEndScreen(bool isWin, float timePlayed)
     Vector2 promptSize = MeasureTextEx(gameFont, prompt, 28, 1);
     Vector2 promptPos = {(screen_width - promptSize.x) / 2, screen_height * 0.75f};
 
-    if (showPrompt){
-
-       DrawTextEx(gameFont, prompt, promptPos, 28, 1, Fade(WHITE, 0.8f));
-
-    }
-
+    if (showPrompt)
+        DrawTextEx(gameFont, prompt, promptPos, 28, 1, Fade(WHITE, 0.8f));
 }
 int Game::GetCols()
 {

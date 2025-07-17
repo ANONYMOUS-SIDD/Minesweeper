@@ -55,12 +55,12 @@ int main()
 {
     InitWindow(screen_width, screen_height, "Minesweeper");
     SetExitKey(KEY_NULL);
-    SetTargetFPS(60);
+    SetTargetFPS(120);
 
     SignUpScreen signupScreen(screen_width, screen_height);
     LoginScreen loginScreen(screen_width, screen_height);
     SplashScreen splashScreen;
- 
+
 
 
 
@@ -70,7 +70,9 @@ int main()
     homeScreen.Init();
     game.GameStartup();
 
-    Screen currentScreen = Screen::SPLASH;
+   // Screen currentScreen = Screen::SPLASH;
+   //Modify This At The End
+   Screen currentScreen = Screen::GAMEPLAY;
 
     while (!WindowShouldClose())
     {

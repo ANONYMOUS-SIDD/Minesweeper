@@ -228,6 +228,55 @@ pqxx::result r = txn.exec("SELECT * FROM PlayerStats WHERE best_time != 0 ORDER 
     }
 });
 
+CROW_ROUTE(app, "/userProfile").methods(crow::HTTPMethod::POST)([&conn](const crow::request &req) {
+    try {
+        auto body = crow::json::load(req.body);
+        if (!body) {
+            return crow::response(400, "Failed To Parse JSON Data !");
+        }
+
+        std::string email = body["email"].s();
+
+        pqxx::work txn(conn);
+
+        pqxx::result r = txn.exec_params(
+            "SELECT user_name, email, best_time, won, lose FROM PlayerStats WHERE email = $1",
+            email
+        );
+
+        if (r.empty()) {
+            return crow::response(404, "User not found");
+        }
+
+        const auto& row = r[0];
+
+        crow::json::wvalue player;
+
+        try {
+            player["user_name"] = row.at("user_name").c_str();
+            player["email"] = row.at("email").c_str();
+            player["best_time"] = row["best_time"].is_null() ? 0 : row["best_time"].as<int>();
+            player["won"] = row["won"].is_null() ? 0 : row["won"].as<int>();
+            player["lose"] = row["lose"].is_null() ? 0 : row["lose"].as<int>();
+        } catch (const std::exception& inner) {
+            return crow::response(500, std::string("JSON build error: ") + inner.what());
+        }
+
+        return crow::response(200, player);
+
+    } catch (const std::exception &e) {
+        return crow::response(500, std::string("Server Error: ") + e.what());
+    }
+});
+
+
+
+
+
+
+
+
+
 
 
 

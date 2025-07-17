@@ -34,6 +34,9 @@
     <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\leader_board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\Backend_Integration\user_profile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Anonymous\Developer\MyRaylib\MineSweeper\hello_raylib\CMakeLists.txt" />

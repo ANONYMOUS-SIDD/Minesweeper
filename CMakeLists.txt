@@ -12,7 +12,7 @@ find_package(raylib CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
 
 # Add executable target and include the signup class file
-add_executable(signup main.cpp sweep.cpp leaderboard.cpp SplashScreen.cpp Backend_Integration/signup_class.cpp Backend_Integration/login_class.cpp Backend_Integration/score_class.cpp SignUpScreen.cpp LoginScreen.cpp home_screen.cpp Backend_Integration/leader_board.cpp)
+add_executable(signup main.cpp sweep.cpp leaderboard.cpp SplashScreen.cpp Backend_Integration/signup_class.cpp Backend_Integration/login_class.cpp Backend_Integration/score_class.cpp SignUpScreen.cpp LoginScreen.cpp home_screen.cpp Backend_Integration/leader_board.cpp Backend_Integration/user_profile.cpp)
 
 
 # Include the Backend_Integration directory so it can find signup_class.h

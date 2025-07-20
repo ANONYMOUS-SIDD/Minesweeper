@@ -51,7 +51,7 @@ void DrawGlowingTitle(Font &font, const char *text, int screenWidth)
     for (int i = 4; i >= 1; i--)
     {
         float alpha = 0.1f * i;
-        DrawTextEx(font, text, pos, fontSize, 2, Fade((Color){100, 150, 255, 255}, alpha));
+        DrawTextEx(font, text, pos, fontSize, 2, Fade(Color{100, 150, 255, 255}, alpha));
     }
     DrawTextEx(font, text, pos, fontSize, 2, WHITE);
 }
@@ -91,21 +91,33 @@ void DrawRankedList(const LeaderboardEntry entries[], int count, Font &font, int
 
     Vector2 mousePos = GetMousePosition();
 
+    // ✅ Draw outer box around the whole list
+    float totalListHeight = count * (itemHeight + padding) - padding;
+    Rectangle listRect = {
+        (float)startX,
+        (float)startY - padding,
+        (float)listWidth,
+        (float)totalListHeight + 2 * padding
+    };
+    DrawRectangleRounded(listRect, 0.1f, 10, Fade(Color{31, 41, 55, 255}, 0.9f)); // background
+    DrawRectangleRoundedLines(listRect, 0.1f, 10, Color{75, 85, 99, 255});        // border
+
+    // 🧾 Draw each player entry
     for (int i = 0; i < count; i++)
     {
         Rectangle itemRect = {(float)startX, (float)(startY + i * (itemHeight + padding)), (float)listWidth, (float)itemHeight};
 
         bool hovered = CheckCollisionPointRec(mousePos, itemRect);
-        Color bgColor = hovered ? Fade((Color){55, 65, 81, 255}, 0.9f) : Fade((Color){55, 65, 81, 255}, 0.7f);
-        Color borderColor = hovered ? (Color){59, 130, 246, 255} : (Color){55, 65, 81, 255};
+        Color bgColor = hovered ? Fade(Color{55, 65, 81, 255}, 0.9f) : Fade(Color{55, 65, 81, 255}, 0.7f);
+        Color borderColor = hovered ? Color{59, 130, 246, 255} : Color{55, 65, 81, 255};
 
         DrawRectangleRounded(itemRect, 0.15f, 8, bgColor);
         DrawRectangleRoundedLines(itemRect, 0.15f, 8, borderColor);
 
-        std::string rankStr = std::to_string(i + 4);
+        std::string rankStr = std::to_string(i + 1);
         Vector2 rankSize = MeasureTextEx(font, rankStr.c_str(), 24, 1);
         Vector2 rankPos = {itemRect.x + 10, itemRect.y + (itemHeight - rankSize.y) / 2};
-        DrawTextEx(font, rankStr.c_str(), rankPos, 24, 1, Fade((Color){107, 114, 128, 255}, 1.0f));
+        DrawTextEx(font, rankStr.c_str(), rankPos, 24, 1, Fade(Color{107, 114, 128, 255}, 1.0f));
 
         Vector2 nameSize = MeasureTextEx(font, entries[i].name.c_str(), 24, 1);
         Vector2 namePos = {itemRect.x + 50, itemRect.y + (itemHeight - nameSize.y) / 2};
@@ -114,9 +126,10 @@ void DrawRankedList(const LeaderboardEntry entries[], int count, Font &font, int
         std::string timeStr = FormatTime(entries[i].timeSeconds);
         Vector2 timeSize = MeasureTextEx(font, timeStr.c_str(), 24, 1);
         Vector2 timePos = {itemRect.x + itemRect.width - timeSize.x - 20, itemRect.y + (itemHeight - timeSize.y) / 2};
-        DrawTextEx(font, timeStr.c_str(), timePos, 24, 1, (Color){147, 197, 253, 255});
+        DrawTextEx(font, timeStr.c_str(), timePos, 24, 1, Color{147, 197, 253, 255});
     }
 }
+
 
 void RenderLeaderboardScreen(Font &font, int screenWidth, int screenHeight)
 {
@@ -153,7 +166,9 @@ void RenderLeaderboardScreen(Font &font, int screenWidth, int screenHeight)
     float rankedListStartY = podiumEnclosureRect.y + podiumEnclosureRect.height + 30;
     float itemHeight = 50;
     float itemPadding = 12;
-    float listHeight = (itemHeight + itemPadding) * 2 - itemPadding;
+    int playerCount = 5;
+    float listHeight = (itemHeight + itemPadding) * playerCount - itemPadding;
+
     float listWidth = screenWidth * 0.8f;
     float listX = (screenWidth - listWidth) / 2;
 
@@ -164,5 +179,7 @@ void RenderLeaderboardScreen(Font &font, int screenWidth, int screenHeight)
         listHeight + padding * 2};
 
     DrawRectangleRoundedLines(listEnclosureRect, 0.1f, 8, Color{210, 180, 140, 255});
-    DrawRankedList(others, 2, font, screenWidth, rankedListStartY);
+    LeaderboardEntry allPlayers[5] = {
+        top3[0], top3[1], top3[2], others[0], others[1]};
+    DrawRankedList(allPlayers, 5, font, screenWidth, rankedListStartY);
 }

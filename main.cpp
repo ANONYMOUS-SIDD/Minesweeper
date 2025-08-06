@@ -72,7 +72,7 @@ int main()
 
    // Screen currentScreen = Screen::SPLASH;
    //Modify This At The End
-   Screen currentScreen = Screen::GAMEPLAY;
+   Screen currentScreen = Screen::SPLASH;
 
     while (!WindowShouldClose())
     {

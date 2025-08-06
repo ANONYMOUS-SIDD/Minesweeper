@@ -7,6 +7,8 @@
 
 // --- Button class ---
 
+
+
 class Button {
 public:
     Rectangle rect;
@@ -36,6 +38,7 @@ public:
     std::vector<Button> homeButtons;
     std::vector<Button> optionsButtons;
     std::vector<Button> levelButtons;
+    std::string email;
     Font customFont;
     Texture2D homeIcon;
     Texture2D background;
@@ -52,6 +55,7 @@ public:
 
     void Init();
     void Unload();
+    void setEmail(std::string email);
 
     int UpdateHome(Vector2 mousePos, bool mousePressed);
     void DrawHome();
@@ -61,6 +65,7 @@ public:
 
     int UpdateLevelSelection(Vector2 mousePos, bool mousePressed);
     void DrawLevelSelection();
+    static void setEmails(std::string emails);
 
     void DrawHowToPlay();
 };

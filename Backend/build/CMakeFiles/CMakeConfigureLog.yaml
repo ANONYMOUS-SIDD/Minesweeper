@@ -24,7 +24,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.10+8b8e13593 for .NET Framework
-      Build started 6/6/2025 10:54:13 AM.
+      Build started 8/7/2025 1:36:51 AM.
       
       Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -34,12 +34,21 @@ events:
       InitializeBuildStatus:
         Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
       ClCompile:
-        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
         CMakeCCompilerId.c
       Link:
-        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
         CompilerIdC.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdC\\CompilerIdC.exe
+      AppLocalFromInstalled:
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        'pwsh.exe' is not recognized as an internal or external command,
+        operable program or batch file.
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdC\\CompilerIdC.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -53,7 +62,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:02.46
+      Time Elapsed 00:00:03.75
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -79,7 +88,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.10+8b8e13593 for .NET Framework
-      Build started 6/6/2025 10:54:16 AM.
+      Build started 8/7/2025 1:36:55 AM.
       
       Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -89,12 +98,21 @@ events:
       InitializeBuildStatus:
         Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
         Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
       ClCompile:
-        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /I"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
         CMakeCXXCompilerId.cpp
       Link:
-        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
         CompilerIdCXX.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdCXX\\CompilerIdCXX.exe
+      AppLocalFromInstalled:
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        'pwsh.exe' is not recognized as an internal or external command,
+        operable program or batch file.
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\Users\\Siddhant\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\4.0.2\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\Users\\Siddhant\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -108,7 +126,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:01.71
+      Time Elapsed 00:00:03.20
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -127,8 +145,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-oba4tq"
-      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-oba4tq"
+      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-t3071q"
+      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-t3071q"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -141,40 +159,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-oba4tq'
+        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-t3071q'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_88f26.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_df5f8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 6/6/2025 10:54:19 AM.
+        Build started 8/7/2025 1:36:59 AM.
         
-        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-oba4tq\\cmTC_88f26.vcxproj" on node 1 (default targets).
+        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t3071q\\cmTC_df5f8.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_88f26.dir\\Debug\\".
+          Creating directory "cmTC_df5f8.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-oba4tq\\Debug\\".
-          Creating directory "cmTC_88f26.dir\\Debug\\cmTC_88f26.tlog\\".
+          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t3071q\\Debug\\".
+          Creating directory "cmTC_df5f8.dir\\Debug\\cmTC_df5f8.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_88f26.dir\\Debug\\cmTC_88f26.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_88f26.dir\\Debug\\cmTC_88f26.tlog\\unsuccessfulbuild".
+          Creating "cmTC_df5f8.dir\\Debug\\cmTC_df5f8.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_df5f8.dir\\Debug\\cmTC_df5f8.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_88f26.dir\\Debug\\\\" /Fd"cmTC_88f26.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_df5f8.dir\\Debug\\\\" /Fd"cmTC_df5f8.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_88f26.dir\\Debug\\\\" /Fd"cmTC_88f26.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_df5f8.dir\\Debug\\\\" /Fd"cmTC_df5f8.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-oba4tq\\Debug\\cmTC_88f26.exe" /INCREMENTAL /ILK:"cmTC_88f26.dir\\Debug\\cmTC_88f26.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-oba4tq/Debug/cmTC_88f26.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-oba4tq/Debug/cmTC_88f26.lib" /MACHINE:X64  /machine:x64 cmTC_88f26.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_88f26.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-oba4tq\\Debug\\cmTC_88f26.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t3071q\\Debug\\cmTC_df5f8.exe" /INCREMENTAL /ILK:"cmTC_df5f8.dir\\Debug\\cmTC_df5f8.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-t3071q/Debug/cmTC_df5f8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-t3071q/Debug/cmTC_df5f8.lib" /MACHINE:X64  /machine:x64 cmTC_df5f8.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_df5f8.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t3071q\\Debug\\cmTC_df5f8.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_88f26.dir\\Debug\\cmTC_88f26.tlog\\unsuccessfulbuild".
-          Touching "cmTC_88f26.dir\\Debug\\cmTC_88f26.tlog\\cmTC_88f26.lastbuildstate".
-        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-oba4tq\\cmTC_88f26.vcxproj" (default targets).
+          Deleting file "cmTC_df5f8.dir\\Debug\\cmTC_df5f8.tlog\\unsuccessfulbuild".
+          Touching "cmTC_df5f8.dir\\Debug\\cmTC_df5f8.tlog\\cmTC_df5f8.lastbuildstate".
+        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t3071q\\cmTC_df5f8.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.45
+        Time Elapsed 00:00:01.06
         
       exitCode: 0
   -
@@ -214,8 +232,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-mdunhp"
-      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-mdunhp"
+      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-afco66"
+      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-afco66"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -229,40 +247,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-mdunhp'
+        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-afco66'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d9189.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0fef1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 6/6/2025 10:54:22 AM.
+        Build started 8/7/2025 1:37:01 AM.
         
-        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mdunhp\\cmTC_d9189.vcxproj" on node 1 (default targets).
+        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-afco66\\cmTC_0fef1.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_d9189.dir\\Debug\\".
+          Creating directory "cmTC_0fef1.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mdunhp\\Debug\\".
-          Creating directory "cmTC_d9189.dir\\Debug\\cmTC_d9189.tlog\\".
+          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-afco66\\Debug\\".
+          Creating directory "cmTC_0fef1.dir\\Debug\\cmTC_0fef1.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_d9189.dir\\Debug\\cmTC_d9189.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_d9189.dir\\Debug\\cmTC_d9189.tlog\\unsuccessfulbuild".
+          Creating "cmTC_0fef1.dir\\Debug\\cmTC_0fef1.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_0fef1.dir\\Debug\\cmTC_0fef1.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d9189.dir\\Debug\\\\" /Fd"cmTC_d9189.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0fef1.dir\\Debug\\\\" /Fd"cmTC_0fef1.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d9189.dir\\Debug\\\\" /Fd"cmTC_d9189.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0fef1.dir\\Debug\\\\" /Fd"cmTC_0fef1.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files (x86)\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mdunhp\\Debug\\cmTC_d9189.exe" /INCREMENTAL /ILK:"cmTC_d9189.dir\\Debug\\cmTC_d9189.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-mdunhp/Debug/cmTC_d9189.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-mdunhp/Debug/cmTC_d9189.lib" /MACHINE:X64  /machine:x64 cmTC_d9189.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_d9189.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mdunhp\\Debug\\cmTC_d9189.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-afco66\\Debug\\cmTC_0fef1.exe" /INCREMENTAL /ILK:"cmTC_0fef1.dir\\Debug\\cmTC_0fef1.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-afco66/Debug/cmTC_0fef1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-afco66/Debug/cmTC_0fef1.lib" /MACHINE:X64  /machine:x64 cmTC_0fef1.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_0fef1.vcxproj -> D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-afco66\\Debug\\cmTC_0fef1.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_d9189.dir\\Debug\\cmTC_d9189.tlog\\unsuccessfulbuild".
-          Touching "cmTC_d9189.dir\\Debug\\cmTC_d9189.tlog\\cmTC_d9189.lastbuildstate".
-        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-mdunhp\\cmTC_d9189.vcxproj" (default targets).
+          Deleting file "cmTC_0fef1.dir\\Debug\\cmTC_0fef1.tlog\\unsuccessfulbuild".
+          Touching "cmTC_0fef1.dir\\Debug\\cmTC_0fef1.tlog\\cmTC_0fef1.lastbuildstate".
+        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-afco66\\cmTC_0fef1.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:01.35
+        Time Elapsed 00:00:00.98
         
       exitCode: 0
   -
@@ -306,10 +324,10 @@ events:
       - "C:/Program Files (x86)/CMake/share/cmake-4.0/Modules/CMakeFindDependencyMacro.cmake:78 (find_package)"
       - "C:/Users/Siddhant/vcpkg/installed/x64-windows/share/crow/CrowConfig.cmake:32 (find_dependency)"
       - "C:/Users/Siddhant/vcpkg/scripts/buildsystems/vcpkg.cmake:893 (_find_package)"
-      - "CMakeLists.txt:14 (find_package)"
+      - "CMakeLists.txt:13 (find_package)"
     directories:
-      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-qvmaoq"
-      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-qvmaoq"
+      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-bbswbx"
+      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-bbswbx"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -323,40 +341,40 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-qvmaoq'
+        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-bbswbx'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_189cc.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b63b2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 6/6/2025 10:54:24 AM.
+        Build started 8/7/2025 1:37:03 AM.
         
-        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\cmTC_189cc.vcxproj" on node 1 (default targets).
+        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\cmTC_b63b2.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_189cc.dir\\Debug\\".
+          Creating directory "cmTC_b63b2.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\Debug\\".
-          Creating directory "cmTC_189cc.dir\\Debug\\cmTC_189cc.tlog\\".
+          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\Debug\\".
+          Creating directory "cmTC_b63b2.dir\\Debug\\cmTC_b63b2.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_189cc.dir\\Debug\\cmTC_189cc.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_189cc.dir\\Debug\\cmTC_189cc.tlog\\unsuccessfulbuild".
+          Creating "cmTC_b63b2.dir\\Debug\\cmTC_b63b2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_b63b2.dir\\Debug\\cmTC_b63b2.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_189cc.dir\\Debug\\\\" /Fd"cmTC_189cc.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\src.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b63b2.dir\\Debug\\\\" /Fd"cmTC_b63b2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\src.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_189cc.dir\\Debug\\\\" /Fd"cmTC_189cc.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\src.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b63b2.dir\\Debug\\\\" /Fd"cmTC_b63b2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\src.c"
           src.c
-        D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\cmTC_189cc.vcxproj]
-        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\cmTC_189cc.vcxproj" (default targets) -- FAILED.
+        D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\cmTC_b63b2.vcxproj]
+        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\cmTC_b63b2.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\cmTC_189cc.vcxproj" (default target) (1) ->
+        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\cmTC_b63b2.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qvmaoq\\cmTC_189cc.vcxproj]
+          D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bbswbx\\cmTC_b63b2.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:02.55
+        Time Elapsed 00:00:01.71
         
       exitCode: 1
   -
@@ -371,10 +389,10 @@ events:
       - "C:/Program Files (x86)/CMake/share/cmake-4.0/Modules/CMakeFindDependencyMacro.cmake:78 (find_package)"
       - "C:/Users/Siddhant/vcpkg/installed/x64-windows/share/crow/CrowConfig.cmake:32 (find_dependency)"
       - "C:/Users/Siddhant/vcpkg/scripts/buildsystems/vcpkg.cmake:893 (_find_package)"
-      - "CMakeLists.txt:14 (find_package)"
+      - "CMakeLists.txt:13 (find_package)"
     directories:
-      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-5h3afq"
-      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-5h3afq"
+      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-nyrloc"
+      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-nyrloc"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -388,42 +406,42 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-5h3afq'
+        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-nyrloc'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6f2ec.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_0fa99.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 6/6/2025 10:54:27 AM.
+        Build started 8/7/2025 1:37:05 AM.
         
-        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\cmTC_6f2ec.vcxproj" on node 1 (default targets).
+        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\cmTC_0fa99.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_6f2ec.dir\\Debug\\".
+          Creating directory "cmTC_0fa99.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\Debug\\".
-          Creating directory "cmTC_6f2ec.dir\\Debug\\cmTC_6f2ec.tlog\\".
+          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\Debug\\".
+          Creating directory "cmTC_0fa99.dir\\Debug\\cmTC_0fa99.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_6f2ec.dir\\Debug\\cmTC_6f2ec.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_6f2ec.dir\\Debug\\cmTC_6f2ec.tlog\\unsuccessfulbuild".
+          Creating "cmTC_0fa99.dir\\Debug\\cmTC_0fa99.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_0fa99.dir\\Debug\\cmTC_0fa99.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6f2ec.dir\\Debug\\\\" /Fd"cmTC_6f2ec.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_0fa99.dir\\Debug\\\\" /Fd"cmTC_0fa99.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6f2ec.dir\\Debug\\\\" /Fd"cmTC_6f2ec.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_0fa99.dir\\Debug\\\\" /Fd"cmTC_0fa99.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\Debug\\cmTC_6f2ec.exe" /INCREMENTAL /ILK:"cmTC_6f2ec.dir\\Debug\\cmTC_6f2ec.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-5h3afq/Debug/cmTC_6f2ec.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-5h3afq/Debug/cmTC_6f2ec.lib" /MACHINE:X64  /machine:x64 cmTC_6f2ec.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\cmTC_6f2ec.vcxproj]
-        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\cmTC_6f2ec.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\Debug\\cmTC_0fa99.exe" /INCREMENTAL /ILK:"cmTC_0fa99.dir\\Debug\\cmTC_0fa99.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-nyrloc/Debug/cmTC_0fa99.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-nyrloc/Debug/cmTC_0fa99.lib" /MACHINE:X64  /machine:x64 cmTC_0fa99.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\cmTC_0fa99.vcxproj]
+        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\cmTC_0fa99.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\cmTC_6f2ec.vcxproj" (default target) (1) ->
+        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\cmTC_0fa99.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-5h3afq\\cmTC_6f2ec.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-nyrloc\\cmTC_0fa99.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:01.15
+        Time Elapsed 00:00:00.70
         
       exitCode: 1
   -
@@ -438,10 +456,10 @@ events:
       - "C:/Program Files (x86)/CMake/share/cmake-4.0/Modules/CMakeFindDependencyMacro.cmake:78 (find_package)"
       - "C:/Users/Siddhant/vcpkg/installed/x64-windows/share/crow/CrowConfig.cmake:32 (find_dependency)"
       - "C:/Users/Siddhant/vcpkg/scripts/buildsystems/vcpkg.cmake:893 (_find_package)"
-      - "CMakeLists.txt:14 (find_package)"
+      - "CMakeLists.txt:13 (find_package)"
     directories:
-      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-o7zobm"
-      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-o7zobm"
+      source: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-jgzwy9"
+      binary: "D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-jgzwy9"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -455,42 +473,42 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-o7zobm'
+        Change Dir: 'D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-jgzwy9'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_93c65.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_80829.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 6/6/2025 10:54:29 AM.
+        Build started 8/7/2025 1:37:07 AM.
         
-        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\cmTC_93c65.vcxproj" on node 1 (default targets).
+        Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\cmTC_80829.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_93c65.dir\\Debug\\".
+          Creating directory "cmTC_80829.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\Debug\\".
-          Creating directory "cmTC_93c65.dir\\Debug\\cmTC_93c65.tlog\\".
+          Creating directory "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\Debug\\".
+          Creating directory "cmTC_80829.dir\\Debug\\cmTC_80829.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_93c65.dir\\Debug\\cmTC_93c65.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_93c65.dir\\Debug\\cmTC_93c65.tlog\\unsuccessfulbuild".
+          Creating "cmTC_80829.dir\\Debug\\cmTC_80829.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_80829.dir\\Debug\\cmTC_80829.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_93c65.dir\\Debug\\\\" /Fd"cmTC_93c65.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_80829.dir\\Debug\\\\" /Fd"cmTC_80829.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_93c65.dir\\Debug\\\\" /Fd"cmTC_93c65.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_80829.dir\\Debug\\\\" /Fd"cmTC_80829.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\Debug\\cmTC_93c65.exe" /INCREMENTAL /ILK:"cmTC_93c65.dir\\Debug\\cmTC_93c65.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-o7zobm/Debug/cmTC_93c65.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-o7zobm/Debug/cmTC_93c65.lib" /MACHINE:X64  /machine:x64 cmTC_93c65.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\cmTC_93c65.vcxproj]
-        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\cmTC_93c65.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\Debug\\cmTC_80829.exe" /INCREMENTAL /ILK:"cmTC_80829.dir\\Debug\\cmTC_80829.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-jgzwy9/Debug/cmTC_80829.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/Anonymous/Developer/MyRaylib/MineSweeper/hello_raylib/Backend/build/CMakeFiles/CMakeScratch/TryCompile-jgzwy9/Debug/cmTC_80829.lib" /MACHINE:X64  /machine:x64 cmTC_80829.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\cmTC_80829.vcxproj]
+        Done Building Project "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\cmTC_80829.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\cmTC_93c65.vcxproj" (default target) (1) ->
+        "D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\cmTC_80829.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-o7zobm\\cmTC_93c65.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [D:\\Anonymous\\Developer\\MyRaylib\\MineSweeper\\hello_raylib\\Backend\\build\\CMakeFiles\\CMakeScratch\\TryCompile-jgzwy9\\cmTC_80829.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:01.14
+        Time Elapsed 00:00:00.57
         
       exitCode: 1
 ...

@@ -24,7 +24,7 @@ SignUpScreen::SignUpScreen(int screenWidth, int screenHeight) : screenWidth(scre
    background = LoadTexture("../assets/images/background.jpg");
 circle = LoadTexture("../assets/images/circle.png");
 login = LoadTexture("../assets/images/login.png");
-user = LoadTexture("../assets/images/user.png");
+user = LoadTexture("../assets/images/userProfile.png");
 emailIcon = LoadTexture("../assets/images/email.png");
 lockIcon = LoadTexture("../assets/images/lock.png");
 eyeIcon = LoadTexture("../assets/images/eyes.png");

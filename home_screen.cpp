@@ -3,9 +3,17 @@
 #include<user_profile.h>
 #include<iostream>
 #include<string>
+
 #include<leaderboard.h>
 
 // -------- Button class --------
+std::string emails;
+
+void UIManager::setEmails(std::string userEmail){
+  emails=userEmail;
+}
+
+
 Texture2D newGameIcon;
 int Clamp(int value, int min, int max)
 {
@@ -271,16 +279,26 @@ int UIManager::UpdateHome(Vector2 mousePos, bool mousePressed)
         {
             if (i == 4) // Exit button
                 CloseWindow();
+
+            // Add account screen navigation
+            if (i == 5) // Account button
+                return 100; // Special value for account screen
+
             return i;
         }
     }
     return -1;
 }
 
-void UIManager::DrawHome()
+
+void UIManager::DrawHome( )
 
 {
-      UserProfile profile("siddhanttimalsina10@gmail.com");
+
+
+
+      //UserProfile profile("siddhanttimalsina10@gmail.com");
+       UserProfile profile(emails);
     UserProfileData data = profile.fetchProfile();
   Color myColor = {218, 241, 240, (unsigned char)(0.8f * 255)}; // => alpha = 204
 
@@ -291,25 +309,19 @@ void UIManager::DrawHome()
                        Vector2{0, 0}, 0.0f, myColor);
 
    Rectangle roundedRect = {
-            0,                     // x position (start at left)
-          460, // y position (so it's vertically centered)
-            (float)800,   // width (full screen)
-            970 / 1.5f   // height (half of screen)
+            0,
+          460,
+            (float)800,
+            970 / 1.5f
         };
 
-        float roundness = 0.2f;   // Adjust corner roundness (0.0 to 1.0)
-        int segments = 30;        // Smoothness of rounded corners
+        float roundness = 0.2f;
+        int segments = 30;
 Color softWhiteCyan = {232, 243, 243, 204};
 
 
-        DrawRectangleRounded(roundedRect, roundness, segments, WHITE);
+  DrawRectangleRounded(roundedRect, roundness, segments, WHITE);
 
-    // ✅ Option 1: Just remove this (not needed anymore)
-    // ClearBackground({22, 28, 40, 255});
-
-    // ✅ Option 2: Only use it if background fails to load
-     //  DrawTexture(corner, 0, 0, WHITE);
-  // Example: Draw a texture at (200, 200) with custom width and height
 float customWidth = 450;
 float customHeight = 150;
 // Left rectangle parameters
@@ -425,16 +437,14 @@ for (int i = 0; i < TextLength(title); i++) {
 
 
 
-//DrawTextEx(customFont, "CHOOSE", {305, 320}, 64, 1, RED);
+
 
 
 
     float iconW = 250, iconH = 250;
     float iconX = 400 - iconW / 2;
     float iconY = 120;
-    //if (homeIcon.id != 0)
-        //DrawTexturePro(homeIcon, {0, 0, (float)homeIcon.width, (float)homeIcon.height},
-                     //  {iconX, iconY, iconW, iconH}, {0, 0}, 0, WHITE);
+
 
 
                      //User Profile Section
@@ -729,19 +739,9 @@ for (int i = 0; i < totalRects; i++) {
 
 
 
-
-
-
-
-
-
     for (auto &btn : homeButtons)
         btn.Draw(&customFont);
 }
-
-
-
-
 
 int UIManager::UpdateOptions(Vector2 mousePos, bool mousePressed)
 {
@@ -752,25 +752,82 @@ int UIManager::UpdateOptions(Vector2 mousePos, bool mousePressed)
     }
     return -1;
 }
+void UIManager::DrawOptions(bool soundOn, bool musicOn) {
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
 
-void UIManager::DrawOptions(bool soundOn, bool musicOn)
-{
-    ClearBackground({22, 28, 40, 255});
-    DrawTextEx(customFont, "OPTIONS", {320, 120}, 64, 1, RAYWHITE);
+    ClearBackground({22, 28, 40, 255}); // Dark blue-gray background
 
-    for (int i = 0; i < (int)optionsButtons.size(); i++)
-    {
-        Button &btn = optionsButtons[i];
-        btn.Draw(&customFont);
-        if (i == 0)
-        {
-            DrawText(soundOn ? "ON" : "OFF", (int)(btn.rect.x + btn.rect.width - 60), (int)(btn.rect.y + 15), 36, soundOn ? GREEN : RED);
-        }
-        else if (i == 1)
-        {
-            DrawText(musicOn ? "ON" : "OFF", (int)(btn.rect.x + btn.rect.width - 60), (int)(btn.rect.y + 15), 36, musicOn ? GREEN : RED);
-        }
+    // Main UI panel box
+    int panelWidth = 600;
+    int panelHeight = 500;
+    Rectangle panelRect = {(float)(screenWidth - panelWidth) / 2, (float)(screenHeight - panelHeight) / 2, (float)panelWidth, (float)panelHeight};
+    Color panelColor = {35, 45, 60, 230}; // Slightly lighter, semi-transparent panel background
+    Color panelBorderColor = {60, 80, 100, 255}; // A subtle border color
+
+    DrawRectangleRounded(panelRect, 0.5f, 10, panelColor);
+    DrawRectangleRoundedLines(panelRect, 0.5f, 2, panelBorderColor);
+
+    // Drawing a modern, glowing title inside the panel
+    const char *titleText = "OPTIONS";
+    int fontSize = 64;
+    Vector2 textSize = MeasureTextEx(customFont, titleText, fontSize, 2);
+    Vector2 titlePos = {panelRect.x + (panelWidth - textSize.x) / 2, panelRect.y + 50}; // Position title within the panel
+    for (int i = 4; i >= 1; i--) {
+        float alpha = 0.1f * i;
+        DrawTextEx(customFont, titleText, titlePos, fontSize, 2, Fade(Color{100, 150, 255, 255}, alpha));
     }
+    DrawTextEx(customFont, titleText, titlePos, fontSize, 2, RAYWHITE);
+
+    // Modern UI layout variables for options
+    int optionsY = panelRect.y + 150;
+    int optionWidth = 400;
+    int optionHeight = 60;
+    int optionSpacing = 30;
+    int optionX = panelRect.x + (panelWidth - optionWidth) / 2;
+
+    // Drawing Sound and Music toggles (assuming optionsButtons[0] and optionsButtons[1])
+    for (int i = 0; i < 2; i++) {
+        Button &btn = optionsButtons[i];
+
+        // Determine button position
+        Rectangle rect = (i == 0) ? Rectangle{ (float)optionX, (float)optionsY, (float)optionWidth, (float)optionHeight } : Rectangle{ (float)optionX, (float)(optionsY + optionHeight + optionSpacing), (float)optionWidth, (float)optionHeight };
+
+        // Draw the option name
+        const char* labelText = (i == 0) ? "Sound" : "Music";
+        Vector2 labelSize = MeasureTextEx(customFont, labelText, 36, 1);
+        DrawTextEx(customFont, labelText, { rect.x + 20, rect.y + (rect.height - labelSize.y) / 2 }, 36, 1, RAYWHITE);
+
+        // Drawing the toggle switch based on state
+        bool state = (i == 0) ? soundOn : musicOn;
+        Rectangle switchRect = { rect.x + rect.width - 120, rect.y + (rect.height - 50) / 2, 100, 50 };
+        Color baseColor = state ? Color{40, 167, 69, 255} : Color{108, 117, 125, 255}; // Green for ON, Gray for OFF
+        Color knobColor = RAYWHITE;
+        float radius = 20;
+        float knobX = state ? switchRect.x + switchRect.width - radius - 5 : switchRect.x + radius + 5;
+
+        DrawRectangleRounded(switchRect, 0.7f, 8, baseColor);
+        DrawRectangleRoundedLines(switchRect, 0.7f, 2, Fade(baseColor, 0.8f));
+        DrawCircle((int)knobX, (int)(switchRect.y + switchRect.height / 2), radius, knobColor);
+
+        // Position the button (for interaction) to match the toggle switch's rectangle
+        btn.rect.x = switchRect.x;
+        btn.rect.y = switchRect.y;
+        btn.rect.width = switchRect.width;
+        btn.rect.height = switchRect.height;
+    }
+
+    // Drawing and positioning the "Back" button (assuming optionsButtons[2])
+    const char *backText = "Back";
+    int backButtonWidth = 200;
+    int backButtonHeight = 60;
+    // Assign the rectangle to the 'Back' button object in optionsButtons for click detection
+    optionsButtons[2].rect = { panelRect.x + (panelWidth - backButtonWidth) / 2, panelRect.y + panelHeight - 100, (float)backButtonWidth, (float)backButtonHeight };
+
+    // Draw the visual elements of the "Back" button
+    DrawRectangleRounded(optionsButtons[2].rect, 0.5f, 8, {60, 80, 100, 255});
+    Vector2 backTextSize = MeasureTextEx(customFont, backText, 36, 1);
+    DrawTextEx(customFont, backText, {optionsButtons[2].rect.x + (backButtonWidth - backTextSize.x) / 2, optionsButtons[2].rect.y + (backButtonHeight - backTextSize.y) / 2}, 36, 1, RAYWHITE);
 }
 
 int UIManager::UpdateLevelSelection(Vector2 mousePos, bool mousePressed)
@@ -783,67 +840,161 @@ int UIManager::UpdateLevelSelection(Vector2 mousePos, bool mousePressed)
     return -1;
 }
 
-void UIManager::DrawLevelSelection()
-{
-    ClearBackground({22, 28, 40, 255});
-    DrawTextEx(customFont, "Select Difficulty", {270, 120}, 56, 1, RAYWHITE);
-    for (auto &btn : levelButtons)
-        btn.Draw(&customFont);
-}
+void UIManager::DrawLevelSelection() {
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
 
-void UIManager::DrawHowToPlay()
-{
-    ClearBackground({220, 220, 220, 255});
-    DrawTextEx(customFont, "HOW TO PLAY", {320, 80}, 64, 1, BLACK);
+    ClearBackground({22, 28, 40, 255}); // Dark blue-gray background
 
-    Rectangle box = {100, 160, 700, 400};
-    DrawRectangleRounded(box, 0.15f, 12, {30, 40, 60, 220});
-    DrawRectangleRoundedLines(box, 0.15f, 12, BLACK);
+    // Main UI panel box
+    int panelWidth = 600;
+    int panelHeight = 600;
+    Rectangle panelRect = {(float)(screenWidth - panelWidth) / 2, (float)(screenHeight - panelHeight) / 2, (float)panelWidth, (float)panelHeight};
+    Color panelColor = {35, 45, 60, 230};
+    Color panelBorderColor = {60, 80, 100, 255};
 
-    struct Instruction
-    {
-        const char *text;
-        int icon; // 0 = bomb, 1 = flag, -1 = no icon
-    };
+    DrawRectangleRounded(panelRect, 0.5f, 10, panelColor);
+    DrawRectangleRoundedLines(panelRect, 0.5f, 2, panelBorderColor);
 
-    Instruction instructions[] = {
-        {"Left Click: Reveal tile", 0},
-        {"Right Click: Flag tile", 1},
-        {"Reveal all safe tiles to win.", -1},
-        {"Avoid the mines!", -1},
-        {"", -1},
-        {"Press ENTER to return to the main menu.", -1}};
+    // Glowing title
+    const char *titleText = "SELECT DIFFICULTY";
+    int fontSize = 56;
+    Vector2 textSize = MeasureTextEx(customFont, titleText, fontSize, 2);
+    Vector2 titlePos = {panelRect.x + (panelWidth - textSize.x) / 2, panelRect.y + 50};
+    for (int i = 4; i >= 1; i--) {
+        float alpha = 0.1f * i;
+        DrawTextEx(customFont, titleText, {titlePos.x, titlePos.y}, fontSize, 2, Fade(Color{100, 150, 255, 255}, alpha));
+    }
+    DrawTextEx(customFont, titleText, titlePos, fontSize, 2, RAYWHITE);
 
-    static Texture2D icons[2] = {
-        LoadTexture("../assets/images/bomb.png"),
-        LoadTexture("../assets/images/flag.png")};
+    // Modern UI layout variables for level buttons
+    int buttonsYStart = panelRect.y + 150;
+    int buttonWidth = 350;
+    int buttonHeight = 70;
+    int buttonSpacing = 25;
+    int buttonX = panelRect.x + (panelWidth - buttonWidth) / 2;
+    Vector2 mousePoint = GetMousePosition();
 
-    const float iconSize = 32.0f;
-    const float iconPadding = 12.0f;
-    int startX = (int)box.x + 40;
-    int startY = (int)box.y + 40;
-    int lineHeight = 50;
-
-    for (int i = 0; i < (int)(sizeof(instructions) / sizeof(instructions[0])); i++)
-    {
-        int y = startY + i * lineHeight;
-
-        if (instructions[i].icon >= 0)
-        {
-            float iconY = y + (lineHeight - iconSize) / 2.0f;
-            Rectangle sourceRec = {0, 0, (float)icons[instructions[i].icon].width, (float)icons[instructions[i].icon].height};
-            Rectangle destRec = {(float)startX, iconY, iconSize, iconSize};
-            Vector2 origin = {0, 0};
-            DrawTexturePro(icons[instructions[i].icon], sourceRec, destRec, origin, 0.0f, WHITE);
-
-            float textX = startX + iconSize + iconPadding;
-            DrawTextEx(customFont, instructions[i].text, {textX, (float)y}, 30, 1, BLACK);
+    // Draw Easy, Medium, and Hard buttons (first 3 elements)
+    for (int i = 0; i < 3; i++) {
+        // Ensure the vector has at least this many elements before trying to access them.
+        if (i >= levelButtons.size()) {
+            break; // Stop if we run out of buttons.
         }
-        else
-        {
-            DrawTextEx(customFont, instructions[i].text, {(float)startX, (float)y}, 30, 1, BLACK);
+        Button &btn = levelButtons[i];
+        btn.rect = {(float)buttonX, (float)(buttonsYStart + i * (buttonHeight + buttonSpacing)), (float)buttonWidth, (float)buttonHeight};
+
+        Color buttonColor = {60, 80, 100, 255};
+        if (CheckCollisionPointRec(mousePoint, btn.rect)) {
+            buttonColor = {80, 100, 120, 255};
         }
+        DrawRectangleRounded(btn.rect, 0.5f, 8, buttonColor);
+
+        Vector2 textPos = {btn.rect.x + (btn.rect.width - MeasureTextEx(customFont, btn.text.c_str(), 36, 1).x) / 2, btn.rect.y + (btn.rect.height - MeasureTextEx(customFont, btn.text.c_str(), 36, 1).y) / 2};
+        DrawTextEx(customFont, btn.text.c_str(), textPos, 36, 1, RAYWHITE);
     }
 
-    // Note: UnloadTexture(icons[0]) and UnloadTexture(icons[1]) should be called in UIManager::Unload()
+    // Back button (the last element)
+    if (levelButtons.size() >= 4) {
+        Button &backBtn = levelButtons[3];
+        backBtn.rect = {panelRect.x + (panelWidth - 200) / 2, panelRect.y + panelHeight - 80, 200.0f, 60.0f};
+
+        Color backButtonColor = {60, 80, 100, 255};
+        if (CheckCollisionPointRec(mousePoint, backBtn.rect)) {
+            backButtonColor = {80, 100, 120, 255};
+        }
+        DrawRectangleRounded(backBtn.rect, 0.5f, 8, backButtonColor);
+
+        Vector2 backTextSize = MeasureTextEx(customFont, backBtn.text.c_str(), 36, 1);
+        DrawTextEx(customFont, backBtn.text.c_str(), {backBtn.rect.x + (200 - backTextSize.x) / 2, backBtn.rect.y + (60 - backTextSize.y) / 2}, 36, 1, RAYWHITE);
+    }
+}void UIManager::DrawHowToPlay() {
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
+
+    ClearBackground({10, 12, 20, 255});  // Deep dark background
+
+    // --- Main Frosted Panel (Bigger & More Prominent) ---
+    int panelWidth = 880;
+    int panelHeight = 720;
+    Rectangle panel = {
+        (float)(screenWidth - panelWidth) / 2,
+        (float)(screenHeight - panelHeight) / 2,
+        (float)panelWidth,
+        (float)panelHeight
+    };
+
+    Color glassBg = {25, 30, 45, 235};      // Soft dark glass tone
+    Color glowEdge = {100, 200, 255, 40};   // Glow border
+
+    // Multi-layered soft glow effect for panel
+    for (int i = 7; i > 0; i--) {
+        DrawRectangleRounded(panel, 0.10f, 18, Fade(glowEdge, 0.03f * i));
+    }
+    DrawRectangleRounded(panel, 0.10f, 18, glassBg);
+    DrawRectangleRoundedLines(panel, 0.10f, 2, glowEdge);
+
+    // --- Header Title ---
+    const char* title = "HOW TO PLAY";
+    int titleFontSize = 66;
+    Vector2 titleSize = MeasureTextEx(customFont, title, titleFontSize, 2);
+    Vector2 titlePos = {
+        panel.x + (panel.width - titleSize.x) / 2,
+        panel.y + 40
+    };
+
+    for (int i = 4; i > 0; i--) {
+        DrawTextEx(customFont, title, titlePos, titleFontSize, 2, Fade({120, 210, 255, 255}, 0.08f * i));
+    }
+    DrawTextEx(customFont, title, titlePos, titleFontSize, 2, RAYWHITE);
+
+    // --- Instruction Cards (Modern Style, Bigger & Colorful) ---
+    const char* rules[] = {
+        "Left Click  -  Reveal a tile",
+        "Right Click -  Flag a tile",
+        "Uncover all safe tiles to win",
+        "Numbers indicate nearby mines",
+        "Revealing a mine ends the game",
+        "Press ENTER to return to menu"
+    };
+
+    Color cardColors[] = {
+        {70, 130, 255, 255},
+        {255, 99, 132, 255},
+        {75, 192, 192, 255},
+        {255, 206, 86, 255},
+        {220, 53, 69, 255},
+        {153, 102, 255, 255}
+    };
+
+    int cardX = panel.x + 60;
+    int cardY = panel.y + 130;
+    int cardW = panel.width - 120;
+    int cardH = 90;           // Increased card height
+    int gapY = 26;            // Increased vertical gap
+    int fontSize = 32;        // Larger text
+
+    for (int i = 0; i < 6; i++) {
+        Rectangle card = {
+            (float)cardX,
+            (float)(cardY + i * (cardH + gapY)),
+            (float)cardW,
+            (float)cardH
+        };
+
+        // Soft glow effect behind card
+        for (int j = 3; j > 0; j--) {
+            DrawRectangleRounded(card, 0.25f, 16, Fade(cardColors[i], 0.05f * j));
+        }
+
+        // Card background & outline
+        DrawRectangleRounded(card, 0.25f, 16, Fade(cardColors[i], 225));
+        DrawRectangleRoundedLines(card, 0.25f, 2, Fade(WHITE, 60));
+
+        // Instruction Text
+        DrawTextEx(customFont, rules[i], {
+            card.x + 28,
+            card.y + (card.height - fontSize) / 2
+        }, fontSize, 1, RAYWHITE);
+    }
 }

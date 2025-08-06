@@ -6,6 +6,7 @@
 #include <cctype>
 #include <iostream>
 #include"sweep.h"
+#include<home_screen.h>
 // Constructor initializes screen size, state flags, text buffers, and loads resources
 LoginScreen::LoginScreen(int screenWidth, int screenHeight) : screenWidth(screenWidth), screenHeight(screenHeight),
     emailFocused(false), passwordFocused(false), passwordVisible(false),showResponse(false),responseStartTime(0),responseMessage(""),
@@ -19,7 +20,7 @@ LoginScreen::LoginScreen(int screenWidth, int screenHeight) : screenWidth(screen
   background = LoadTexture("../assets/images/background.jpg");
 circle = LoadTexture("../assets/images/circle.png");
 login = LoadTexture("../assets/images/login.png");
-user = LoadTexture("../assets/images/user.png");
+user = LoadTexture("../assets/images/userProfile.png");
 emailIcon = LoadTexture("../assets/images/email.png");
 lockIcon = LoadTexture("../assets/images/lock.png");
 eyeIcon = LoadTexture("../assets/images/eyes.png");
@@ -83,6 +84,7 @@ void LoginScreen::Update()
 {
                 loggedIn=true;
                 Game::setEmail(emailText);
+                 UIManager::setEmails(emailText);
           }
                 //accountCreated = true;
             }

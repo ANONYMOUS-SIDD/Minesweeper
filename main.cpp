@@ -76,10 +76,7 @@ int main()
 
     while (!WindowShouldClose())
     {
-       int result = homeScreen.UpdateHome(mousePos, mousePressed);
-                if (result == 100) { // Account screen
-                    currentScreen = Screen::SIGNUP;
-                }
+
         if (currentScreen != Screen::GAMEPLAY)
         {
             BeginDrawing();
